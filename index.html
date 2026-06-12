@@ -1,0 +1,3244 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apex Health | आपका स्वास्थ्य, हमारी प्राथमिकता</title>
+<meta name="description" content="Apex Health – Blood Tests, Free Home Collection, 24/7 Ambulance, Medicine Delivery & Doctor Consultation. Serving your neighborhood with care.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Brand */
+  --blue: #1B4D72;
+  --blue-mid: #2563a8;
+  --blue-light: #e8f1fa;
+  --blue-pale: #f0f7ff;
+  --green: #1e7a4e;
+  --green-mid: #2E8B57;
+  --green-light: #e4f5ec;
+  --cyan: #00BCD4;
+  --cyan-light: #e0f7fa;
+  --teal: #0097a7;
+  --gold: #f59e0b;
+  --red: #dc2626;
+
+  /* Light mode surfaces */
+  --bg: #ffffff;
+  --bg-alt: #f8fafc;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --border: #e2e8f0;
+  --border-light: #f1f5f9;
+
+  /* Light mode text */
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+
+  /* Nav */
+  --nav-bg: rgba(255,255,255,0.97);
+  --nav-border: #e2e8f0;
+
+  /* Legacy aliases (keep working) */
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-400: #94a3b8;
+  --gray-600: #475569;
+  --gray-800: #1e293b;
+  --white: #ffffff;
+
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'Outfit', system-ui, sans-serif;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 4px 24px rgba(27,77,114,0.10);
+  --shadow-lg: 0 12px 48px rgba(27,77,114,0.15);
+}
+
+/* ── DARK MODE ── */
+html[data-theme="dark"] {
+  --bg: #0d1117;
+  --bg-alt: #161b22;
+  --surface: #1c2333;
+  --surface-raised: #222d40;
+  --border: #2d3748;
+  --border-light: #2d3748;
+
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  --nav-bg: rgba(13,17,23,0.97);
+  --nav-border: #2d3748;
+
+  --blue-light: rgba(27,77,114,0.25);
+  --blue-pale: rgba(27,77,114,0.15);
+  --green-light: rgba(30,122,78,0.2);
+  --cyan-light: rgba(0,188,212,0.15);
+
+  --gray-50: #161b22;
+  --gray-100: #1c2333;
+  --gray-200: #2d3748;
+  --gray-400: #64748b;
+  --gray-600: #94a3b8;
+  --gray-800: #e2e8f0;
+  --white: #1c2333;
+
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  --shadow-lg: 0 12px 48px rgba(0,0,0,0.5);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: var(--sans);
+  color: var(--text-primary);
+  background: var(--bg);
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ── Emergency Bar ── */
+.emergency-bar {
+  background: linear-gradient(90deg, #7f1d1d 0%, #991b1b 50%, #7f1d1d 100%);
+  color: #fef2f2;
+  text-align: center;
+  padding: 9px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+  z-index: 100;
+}
+.emergency-bar .pulse {
+  width: 8px; height: 8px;
+  background: #fca5a5;
+  border-radius: 50%;
+  animation: pulse 1.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+.emergency-bar a { color: #fca5a5; font-weight: 700; text-decoration: none; }
+.emergency-bar a:hover { color: #fff; }
+@keyframes pulse {
+  0%,100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.6); opacity: 0.6; }
+}
+
+/* ── Navigation ── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--nav-border);
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  transition: box-shadow 0.3s, background 0.3s;
+}
+nav.scrolled { box-shadow: var(--shadow); }
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.logo-icon {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--teal) 100%);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: var(--serif);
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 400;
+}
+.logo-text { line-height: 1.15; }
+.logo-text .brand { font-family: var(--serif); font-size: 19px; color: var(--blue); letter-spacing: -0.3px; }
+.logo-text .tagline { font-size: 10px; color: var(--green-mid); font-weight: 500; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--gray-600);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+.nav-links a:hover, .nav-links a.active {
+  background: var(--blue-pale);
+  color: var(--blue);
+}
+
+.nav-cta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 10px; font-size: 14px; font-weight: 600; text-decoration: none; cursor: pointer; border: none; transition: all 0.2s; font-family: var(--sans); }
+.btn-primary { background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 100%); color: white; }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(27,77,114,0.35); }
+.btn-green { background: linear-gradient(135deg, var(--green) 0%, var(--green-mid) 100%); color: white; }
+.btn-green:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(46,139,87,0.35); }
+.btn-outline { background: transparent; color: var(--blue); border: 1.5px solid var(--blue); }
+.btn-outline:hover { background: var(--blue-pale); }
+.btn-lg { padding: 14px 28px; font-size: 16px; border-radius: 12px; }
+.btn-whatsapp { background: linear-gradient(135deg, #128c7e 0%, #25d366 100%); color: white; }
+.btn-whatsapp:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37,211,102,0.35); }
+
+/* ── Hamburger ── */
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--gray-800); border-radius: 2px; transition: all 0.3s; }
+
+/* ── Pages ── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, #0a1f35 0%, #1B4D72 45%, #0f3d5a 100%);
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 60px 24px;
+}
+.hero-bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.12;
+  pointer-events: none;
+}
+.hero-bg-orb.orb1 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, var(--cyan) 0%, transparent 70%);
+  top: -150px; right: -100px;
+}
+.hero-bg-orb.orb2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, var(--green-mid) 0%, transparent 70%);
+  bottom: -100px; left: -100px;
+}
+.hero-grid-lines {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  width: 100%;
+}
+.hero-left { position: relative; z-index: 2; }
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,188,212,0.15);
+  border: 1px solid rgba(0,188,212,0.3);
+  color: var(--cyan);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  letter-spacing: 0.5px;
+}
+.hero-badge .dot { width: 6px; height: 6px; background: var(--cyan); border-radius: 50%; animation: pulse 1.4s infinite; }
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 5vw, 58px);
+  color: white;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.hero h1 .accent { color: var(--cyan); font-style: italic; }
+.hero-hindi {
+  font-size: 18px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 28px;
+  font-weight: 400;
+}
+.hero-sub {
+  font-size: 16px;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 40px;
+  line-height: 1.7;
+  max-width: 460px;
+}
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
+.hero-stats {
+  display: flex;
+  gap: 32px;
+}
+.hero-stat .num { font-size: 28px; font-weight: 700; color: white; font-family: var(--serif); }
+.hero-stat .label { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+
+/* Hero Right: floating cards */
+.hero-right {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.floating-card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(20px);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  animation: floatUp 0.6s ease both;
+}
+.floating-card:nth-child(1) { animation-delay: 0.1s; }
+.floating-card:nth-child(2) { animation-delay: 0.25s; margin-left: 32px; }
+.floating-card:nth-child(3) { animation-delay: 0.4s; }
+.floating-card:nth-child(4) { animation-delay: 0.55s; margin-left: 48px; }
+@keyframes floatUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fc-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 22px;
+}
+.fc-text .label { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.5px; }
+.fc-text .value { font-size: 16px; font-weight: 600; color: white; margin-top: 2px; }
+
+/* ── Section ── */
+.section { padding: 80px 24px; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.section-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--green-mid);
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 42px);
+  color: var(--blue);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.section-title em { color: var(--green-mid); font-style: italic; }
+.section-sub { font-size: 16px; color: var(--gray-600); max-width: 600px; line-height: 1.7; }
+.section-header { margin-bottom: 52px; }
+
+/* ── Services ── */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+.service-card {
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  transition: all 0.3s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--card-color-a) 0%, var(--card-color-b) 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 0;
+}
+.service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: transparent; }
+.service-card:hover::before { opacity: 1; }
+.service-card:hover .sc-icon, .service-card:hover .sc-title, .service-card:hover .sc-desc, .service-card:hover .sc-badge {
+  color: white !important;
+}
+.service-card:hover .sc-icon-wrap { background: rgba(255,255,255,0.2) !important; }
+
+.sc-icon-wrap {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  font-size: 26px;
+  position: relative;
+  z-index: 1;
+  transition: background 0.3s;
+}
+.sc-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s;
+}
+.sc-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; position: relative; z-index: 1; transition: color 0.3s; }
+.sc-desc { font-size: 13px; color: var(--gray-600); line-height: 1.6; position: relative; z-index: 1; transition: color 0.3s; }
+.sc-arrow { margin-top: 16px; font-size: 13px; font-weight: 600; color: var(--blue); display: flex; align-items: center; gap: 4px; position: relative; z-index: 1; transition: color 0.3s; }
+
+/* ── Packages ── */
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 52px;
+}
+.pkg-card {
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  position: relative;
+  border: 1.5px solid var(--gray-200);
+  background: var(--white);
+  transition: all 0.3s;
+}
+.pkg-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.pkg-card.featured {
+  background: linear-gradient(145deg, #0a1f35 0%, #1B4D72 100%);
+  border-color: transparent;
+  color: white;
+  transform: scale(1.03);
+}
+.pkg-card.featured:hover { transform: scale(1.03) translateY(-4px); }
+.pkg-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 20px;
+}
+.pkg-name { font-family: var(--serif); font-size: 22px; margin-bottom: 8px; }
+.pkg-price { font-size: 48px; font-weight: 700; line-height: 1; margin-bottom: 6px; font-family: var(--serif); }
+.pkg-price sup { font-size: 24px; vertical-align: super; }
+.pkg-per { font-size: 13px; color: var(--gray-400); margin-bottom: 24px; }
+.featured .pkg-per { color: rgba(255,255,255,0.5); }
+.pkg-divider { height: 1px; background: var(--gray-200); margin-bottom: 24px; }
+.featured .pkg-divider { background: rgba(255,255,255,0.15); }
+.pkg-features { list-style: none; display: flex; flex-direction: column; gap: 11px; margin-bottom: 28px; }
+.pkg-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; }
+.pkg-features li::before { content: '✓'; color: var(--green-mid); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.featured .pkg-features li::before { color: var(--cyan); }
+.featured .pkg-features li { color: rgba(255,255,255,0.85); }
+
+/* ── Trust ── */
+.trust-section { background: linear-gradient(135deg, var(--blue-pale) 0%, var(--green-light) 100%); }
+.trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+.trust-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+.trust-num { font-family: var(--serif); font-size: 42px; color: var(--blue); line-height: 1; margin-bottom: 8px; }
+.trust-label { font-size: 14px; color: var(--gray-600); font-weight: 500; }
+
+/* ── Process ── */
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  position: relative;
+}
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 36px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--blue-light), var(--green-light));
+  z-index: 0;
+}
+.step-card {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.step-num {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-family: var(--serif);
+  font-weight: 700;
+  color: white;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, var(--blue), var(--teal));
+  box-shadow: 0 8px 24px rgba(27,77,114,0.3);
+}
+.step-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--blue); }
+.step-desc { font-size: 13px; color: var(--gray-600); }
+
+/* ── Testimonials ── */
+.testimonials-section { background: linear-gradient(135deg, #0a1f35 0%, #1B4D72 100%); }
+.testimonials-section .section-title { color: white; }
+.testimonials-section .section-sub { color: rgba(255,255,255,0.6); }
+.testimonials-section .section-tag { color: var(--cyan); }
+.testimonials-slider {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.t-card {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(20px);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+.t-stars { color: var(--gold); font-size: 16px; margin-bottom: 16px; }
+.t-quote { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+.t-author { display: flex; align-items: center; gap: 12px; }
+.t-avatar {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  color: white;
+  flex-shrink: 0;
+}
+.t-name { font-weight: 600; font-size: 14px; color: white; }
+.t-loc { font-size: 12px; color: rgba(255,255,255,0.4); }
+
+/* ── About ── */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+.about-visual {
+  position: relative;
+}
+.about-main-card {
+  background: linear-gradient(135deg, var(--blue-pale) 0%, var(--cyan-light) 100%);
+  border-radius: 24px;
+  padding: 40px;
+  border: 1px solid var(--gray-200);
+}
+.about-float-badge {
+  position: absolute;
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  box-shadow: var(--shadow-lg);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue);
+  border: 1px solid var(--gray-200);
+}
+.about-float-badge.top-right { top: -16px; right: -16px; }
+.about-float-badge.bottom-left { bottom: -16px; left: -16px; }
+
+.cert-badges { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.cert-badge {
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 100%);
+  color: white;
+  border-radius: 999px;
+  padding: 7px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* ── Booking Page ── */
+.booking-hero { background: linear-gradient(135deg, var(--green) 0%, var(--green-mid) 100%); color: white; padding: 60px 24px; }
+.booking-form-wrap {
+  max-width: 680px;
+  margin: 0 auto;
+  background: var(--white);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: var(--shadow-lg);
+  margin-top: -40px;
+  position: relative;
+  z-index: 2;
+}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.form-group { display: flex; flex-direction: column; gap: 7px; }
+.form-group.full { grid-column: 1 / -1; }
+.form-label { font-size: 13px; font-weight: 600; color: var(--gray-800); }
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-family: var(--sans);
+  color: var(--gray-800);
+  outline: none;
+  transition: all 0.2s;
+  background: var(--white);
+  appearance: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(27,77,114,0.08);
+}
+.form-textarea { resize: vertical; min-height: 80px; }
+.step-indicator { display: flex; align-items: center; gap: 8px; margin-bottom: 32px; }
+.step-dot { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; border: 2px solid var(--gray-200); color: var(--gray-400); transition: all 0.3s; }
+.step-dot.active { background: var(--blue); border-color: var(--blue); color: white; }
+.step-dot.done { background: var(--green-mid); border-color: var(--green-mid); color: white; }
+.step-line { flex: 1; height: 2px; background: var(--gray-200); border-radius: 2px; }
+
+/* ── Ambulance Page ── */
+.ambulance-hero {
+  background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 50%, #7f1d1d 100%);
+  color: white;
+  padding: 80px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.ambulance-hero .big-number {
+  font-family: var(--serif);
+  font-size: clamp(48px, 8vw, 80px);
+  color: var(--white);
+  margin: 24px 0;
+  letter-spacing: -2px;
+}
+.ambulance-hero .big-number a { color: #fca5a5; text-decoration: none; }
+.ambulance-hero .big-number a:hover { color: white; }
+.ambulance-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+.amb-feature {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--radius);
+  padding: 28px;
+  text-align: center;
+}
+.amb-icon { font-size: 36px; margin-bottom: 16px; }
+.amb-title { font-size: 16px; font-weight: 700; color: white; margin-bottom: 8px; }
+.amb-desc { font-size: 13px; color: rgba(255,255,255,0.65); }
+
+/* ── Contact Page ── */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+.contact-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.contact-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.contact-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-400); margin-bottom: 4px; }
+.contact-value { font-size: 16px; font-weight: 600; color: var(--gray-800); }
+.contact-value a { color: var(--blue); text-decoration: none; }
+.map-embed {
+  width: 100%;
+  height: 240px;
+  background: var(--blue-pale);
+  border-radius: var(--radius);
+  border: 1.5px solid var(--gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--gray-600);
+  font-size: 14px;
+  margin-top: 32px;
+}
+.hours-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; margin-top: 16px; }
+.hours-row { display: flex; justify-content: space-between; font-size: 14px; padding: 8px 0; border-bottom: 1px solid var(--gray-100); }
+.hours-row .day { color: var(--gray-600); }
+.hours-row .time { font-weight: 600; color: var(--blue); }
+
+/* ── WhatsApp Button ── */
+.whatsapp-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+.wa-tooltip {
+  background: var(--gray-800);
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(8px);
+  transition: all 0.25s;
+  pointer-events: none;
+}
+.whatsapp-float:hover .wa-tooltip { opacity: 1; transform: translateX(0); }
+.wa-btn {
+  width: 58px; height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #128c7e, #25d366);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 4px 24px rgba(37,211,102,0.5);
+  cursor: pointer;
+  animation: waFloat 3s ease-in-out infinite;
+  text-decoration: none;
+}
+@keyframes waFloat {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.wa-pulse-ring {
+  position: absolute;
+  width: 58px; height: 58px;
+  border-radius: 50%;
+  border: 2px solid #25d366;
+  animation: waRing 2s ease-out infinite;
+}
+@keyframes waRing {
+  from { transform: scale(1); opacity: 0.7; }
+  to { transform: scale(1.8); opacity: 0; }
+}
+
+/* ── Footer ── */
+footer {
+  background: linear-gradient(180deg, #0a1a2e 0%, #06111e 100%);
+  color: rgba(255,255,255,0.7);
+  padding: 64px 24px 0;
+}
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer-brand .logo-text .brand { color: white; font-size: 22px; }
+.footer-brand .logo-text .tagline { color: var(--cyan); }
+.footer-brand p { font-size: 13px; margin-top: 16px; line-height: 1.7; color: rgba(255,255,255,0.5); }
+.footer-col h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: white; margin-bottom: 16px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul li a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+.footer-col ul li a:hover { color: var(--cyan); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+}
+.footer-socials { display: flex; gap: 12px; }
+.social-btn {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all 0.2s;
+  text-decoration: none;
+  color: rgba(255,255,255,0.5);
+}
+.social-btn:hover { background: rgba(255,255,255,0.1); color: white; }
+
+/* ── Misc ── */
+.divider { height: 1px; background: var(--gray-200); margin: 0; }
+.text-center { text-align: center; }
+.text-center .section-sub { margin: 0 auto; }
+.chip {
+  display: inline-block;
+  background: var(--blue-light);
+  color: var(--blue);
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.chip.green { background: var(--green-light); color: var(--green); }
+
+/* ── Notice/Banner ── */
+.offer-banner {
+  background: linear-gradient(135deg, var(--green) 0%, var(--teal) 100%);
+  color: white;
+  border-radius: var(--radius);
+  padding: 24px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 40px;
+}
+.offer-text .offer-title { font-size: 18px; font-weight: 700; }
+.offer-text .offer-sub { font-size: 13px; opacity: 0.8; margin-top: 4px; }
+
+/* ── Page Transitions ── */
+.page { animation: fadeIn 0.4s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── Success Message ── */
+.success-msg {
+  background: var(--green-light);
+  border: 1.5px solid var(--green-mid);
+  border-radius: var(--radius-sm);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+.success-msg .icon { font-size: 28px; }
+.success-msg .text .title { font-weight: 700; color: var(--green); font-size: 15px; }
+.success-msg .text .sub { font-size: 13px; color: var(--green); opacity: 0.8; margin-top: 3px; }
+
+/* ══════════════════════════════════════════════
+   DARK MODE — surface overrides
+══════════════════════════════════════════════ */
+html[data-theme="dark"] body { background: var(--bg); color: var(--text-primary); }
+html[data-theme="dark"] nav { background: var(--nav-bg); border-color: var(--border); }
+html[data-theme="dark"] .service-card,
+html[data-theme="dark"] .pkg-card,
+html[data-theme="dark"] .t-card,
+html[data-theme="dark"] .step-card,
+html[data-theme="dark"] .amb-feature,
+html[data-theme="dark"] .cert-badge,
+html[data-theme="dark"] .booking-form-wrap { background: var(--surface) !important; border-color: var(--border) !important; }
+html[data-theme="dark"] .section-title { color: var(--blue-light) !important; }
+html[data-theme="dark"] .section-title em { color: var(--cyan) !important; }
+html[data-theme="dark"] p, html[data-theme="dark"] .section-sub,
+html[data-theme="dark"] .sc-desc, html[data-theme="dark"] .t-quote { color: var(--text-secondary) !important; }
+html[data-theme="dark"] .form-input,
+html[data-theme="dark"] .form-select,
+html[data-theme="dark"] .form-textarea {
+  background: var(--surface-raised) !important;
+  border-color: var(--border) !important;
+  color: var(--text-primary) !important;
+}
+html[data-theme="dark"] .mobile-menu-inner { background: var(--surface); }
+html[data-theme="dark"] .mobile-menu-inner a { color: var(--text-primary); }
+html[data-theme="dark"] .mobile-menu-inner a:hover { background: var(--blue-pale); }
+html[data-theme="dark"] .trust-section { background: var(--bg-alt) !important; }
+html[data-theme="dark"] .trust-card { background: var(--surface) !important; border-color: var(--border) !important; }
+html[data-theme="dark"] .trust-num { color: var(--cyan) !important; }
+html[data-theme="dark"] .step-card { background: var(--surface) !important; }
+html[data-theme="dark"] .step-num { background: var(--blue) !important; }
+html[data-theme="dark"] .logo-text .brand { color: var(--text-primary) !important; }
+html[data-theme="dark"] .sc-title { color: var(--text-primary) !important; }
+html[data-theme="dark"] .pkg-name { color: var(--text-primary) !important; }
+html[data-theme="dark"] .pkg-price { color: var(--blue-mid) !important; }
+html[data-theme="dark"] .pkg-card.featured .pkg-name { color: white !important; }
+html[data-theme="dark"] .pkg-card.featured .pkg-price { color: var(--cyan) !important; }
+html[data-theme="dark"] .hours-row { background: var(--surface) !important; color: var(--text-primary) !important; }
+html[data-theme="dark"] .contact-info-item .contact-value { color: var(--text-primary) !important; }
+html[data-theme="dark"] .contact-label { color: var(--text-muted) !important; }
+html[data-theme="dark"] .about-main-card { background: var(--surface-raised) !important; }
+
+/* ── Theme + Lang Toggle Controls ── */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Language toggle pill */
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  background: var(--bg-alt);
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 2px;
+  transition: border-color 0.2s;
+}
+.lang-btn {
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: all 0.2s;
+  letter-spacing: 0.4px;
+}
+.lang-btn.active {
+  background: var(--blue);
+  color: white;
+  box-shadow: 0 2px 8px rgba(27,77,114,0.3);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: var(--bg-alt);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.theme-toggle:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-pale); }
+
+/* Dark mode mobile menu toggle */
+html[data-theme="dark"] .lang-toggle { background: var(--surface); border-color: var(--border); }
+html[data-theme="dark"] .theme-toggle { background: var(--surface); border-color: var(--border); color: var(--text-secondary); }
+html[data-theme="dark"] .theme-toggle:hover { border-color: var(--cyan); color: var(--cyan); }
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   XL desktop  ≥ 1280px  — full layout
+   Desktop     ≥ 1024px  — standard
+   Tablet      768–1023  — adapted
+   Mobile       < 768px  — stacked
+══════════════════════════════════════════════ */
+
+/* ── XL Desktop (1280px+) ── */
+@media (min-width: 1280px) {
+  .section-inner { max-width: 1280px; }
+  .hero-content { gap: 80px; }
+  .hero h1 { font-size: 62px; }
+  .packages-grid { grid-template-columns: repeat(3, 1fr); }
+  .services-grid { grid-template-columns: repeat(4, 1fr); }
+  .footer-grid { grid-template-columns: 2.5fr 1fr 1fr 1fr; gap: 60px; }
+}
+
+/* ── Standard Desktop (1024–1279px) ── */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .section-inner { max-width: 1060px; }
+  .hero h1 { font-size: 52px; }
+  .packages-grid { grid-template-columns: repeat(3, 1fr); }
+  .services-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ── Tablet (768–1023px) ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .nav-cta .btn-outline { display: none; }
+
+  .hero-content { grid-template-columns: 1fr; gap: 40px; }
+  .hero-right { display: none; }
+  .hero h1 { font-size: 44px; }
+  .hero-stats { gap: 24px; }
+
+  .services-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .packages-grid { grid-template-columns: repeat(2, 1fr); }
+  .pkg-card.featured { transform: none; }
+
+  .trust-grid { grid-template-columns: repeat(3, 1fr); }
+  .process-steps { grid-template-columns: repeat(2, 1fr); }
+  .process-steps::before { display: none; }
+  .testimonials-slider { grid-template-columns: repeat(2, 1fr); }
+
+  .about-grid { grid-template-columns: 1fr; }
+  .about-visual { display: none; }
+  .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+  .ambulance-features { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .form-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .section { padding: 60px 24px; }
+  .section-inner { max-width: 100%; padding: 0 16px; }
+
+  .booking-form-wrap { padding: 32px 28px; }
+}
+
+/* ── Mobile (< 768px) ── */
+@media (max-width: 767px) {
+  /* Nav */
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .nav-cta { display: none; }
+  nav { padding: 0 16px; height: 60px; }
+  .logo-text .tagline { display: none; }
+  .nav-controls { gap: 6px; }
+  .lang-btn { padding: 4px 9px; font-size: 11px; }
+  .theme-toggle { width: 34px; height: 34px; font-size: 14px; border-radius: 8px; }
+
+  /* Emergency bar */
+  .emergency-bar { font-size: 11px; gap: 6px; padding: 8px 12px; flex-wrap: wrap; justify-content: center; }
+  .emergency-bar span:first-of-type { display: none; }
+
+  /* Hero */
+  .hero { padding: 48px 20px; min-height: auto; }
+  .hero-content { grid-template-columns: 1fr; gap: 0; }
+  .hero-right { display: none; }
+  .hero h1 { font-size: clamp(30px, 8vw, 40px); }
+  .hero-hindi { font-size: 15px; }
+  .hero-sub { font-size: 14px; margin-bottom: 28px; }
+  .hero-ctas { flex-direction: column; gap: 10px; }
+  .hero-ctas .btn { width: 100%; justify-content: center; }
+  .hero-stats { gap: 20px; }
+  .hero-stat .num { font-size: 22px; }
+  .hero-badge { font-size: 11px; padding: 5px 12px; }
+
+  /* Sections */
+  .section { padding: 48px 16px; }
+  .section-inner { max-width: 100%; }
+  .section-title { font-size: clamp(24px, 6vw, 34px); }
+  .section-header { margin-bottom: 32px; }
+
+  /* Services */
+  .services-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .service-card { padding: 20px 16px; }
+  .sc-icon-wrap { width: 44px; height: 44px; font-size: 22px; margin-bottom: 10px; }
+  .sc-title { font-size: 13px; }
+  .sc-desc { font-size: 12px; display: none; }
+  .sc-arrow { font-size: 11px; }
+
+  /* Packages */
+  .packages-grid { grid-template-columns: 1fr; gap: 16px; }
+  .pkg-card.featured { transform: none; }
+  .pkg-card { padding: 24px 20px; }
+  .pkg-price { font-size: 40px; }
+
+  /* Trust */
+  .trust-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .trust-card { padding: 20px 12px; }
+  .trust-num { font-size: 22px; }
+  .trust-label { font-size: 11px; }
+
+  /* Process steps */
+  .process-steps { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .process-steps::before { display: none; }
+  .step-card { padding: 20px 16px; }
+  .step-num { width: 36px; height: 36px; font-size: 15px; }
+  .step-title { font-size: 13px; }
+  .step-desc { font-size: 12px; }
+
+  /* Testimonials */
+  .testimonials-slider { grid-template-columns: 1fr; gap: 16px; }
+  .t-card { padding: 24px 20px; }
+
+  /* About */
+  .about-grid { grid-template-columns: 1fr; }
+  .about-visual { display: none; }
+  .cert-badges { gap: 8px; }
+  .cert-badge { font-size: 11px; padding: 5px 12px; }
+
+  /* Ambulance */
+  .ambulance-hero { padding: 48px 20px; }
+  .ambulance-features { grid-template-columns: 1fr; gap: 12px; }
+  .amb-feature { padding: 20px; }
+  .big-number a { font-size: 28px; }
+
+  /* Contact */
+  .contact-grid { grid-template-columns: 1fr; gap: 28px; }
+  .contact-info-item { gap: 12px; }
+  .contact-icon { width: 40px; height: 40px; font-size: 18px; }
+
+  /* Booking */
+  .booking-hero { padding: 48px 20px; }
+  .booking-form-wrap { padding: 24px 20px; margin-top: -40px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .step-indicator { gap: 6px; margin-bottom: 28px; }
+  .step-dot { width: 32px; height: 32px; font-size: 13px; }
+
+  /* Footer */
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  footer { padding: 48px 20px 0; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; padding: 16px 0; }
+
+  /* Offer banner */
+  .offer-banner { flex-direction: column; text-align: center; gap: 16px; padding: 24px 20px; }
+  .offer-banner .btn { width: 100%; justify-content: center; }
+
+  /* Mobile menu */
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 200;
+    display: none;
+  }
+  .mobile-menu.open { display: block; }
+  .mobile-menu-inner {
+    position: absolute;
+    top: 0; right: 0;
+    width: min(300px, 85vw);
+    height: 100%;
+    background: var(--surface);
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow-y: auto;
+  }
+  .mobile-menu-inner a {
+    display: block;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .mobile-menu-inner a:hover { background: var(--blue-pale); color: var(--blue); }
+
+  /* Misc spacing */
+  .btn-lg { padding: 13px 22px; font-size: 15px; }
+  .section-tag { font-size: 10px; }
+  .hero-ctas .btn-lg { padding: 13px 20px; font-size: 14px; }
+  .timeline-item { margin-bottom: 16px; }
+
+  /* Packages page category pills */
+  #page-packages section:first-child .section-inner > div { gap: 8px !important; }
+}
+
+/* ── Very small phones (< 380px) ── */
+@media (max-width: 379px) {
+  .services-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .trust-grid { grid-template-columns: 1fr 1fr; }
+  .process-steps { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 28px; }
+  .hero-stats { flex-direction: column; gap: 12px; }
+  .lang-btn { padding: 3px 7px; font-size: 10px; }
+}
+
+/* ── LEGACY fallback (900px catch-all for older overrides) ── */
+@media (max-width: 900px) {
+  .form-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- Emergency Bar -->
+<div class="emergency-bar">
+  <div class="pulse"></div>
+  <span id="t-emerg">🚨 24/7 Emergency Ambulance — Sonipat & Ganaur</span>
+  <a href="tel:9518656024">📞 9518656024</a>
+  <span style="opacity:0.5">|</span>
+  <a href="tel:8059663065">8059663065</a>
+  <div class="pulse"></div>
+</div>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <a class="logo" href="#" onclick="showPage('home')">
+    <div class="logo-icon">A</div>
+    <div class="logo-text">
+      <div class="brand">Apex Health</div>
+      <div class="tagline" data-en="आपका स्वास्थ्य, हमारी प्राथमिकता" data-hi="आपका स्वास्थ्य, हमारी प्राथमिकता">आपका स्वास्थ्य, हमारी प्राथमिकता</div>
+    </div>
+  </a>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#" onclick="showPage('home')" id="nav-home" class="active" data-en="Home" data-hi="होम"><span id="t-nav-home">Home</span></a></li>
+    <li><a href="#" onclick="showPage('services')" id="nav-services" data-en="Services" data-hi="सेवाएं"><span id="t-nav-services">Services</span></a></li>
+    <li><a href="#" onclick="showPage('packages')" id="nav-packages" data-en="Packages" data-hi="पैकेज"><span id="t-nav-packages">Packages</span></a></li>
+    <li><a href="#" onclick="showPage('ambulance')" id="nav-ambulance" data-en="Ambulance" data-hi="एंबुलेंस"><span id="t-nav-ambulance">Ambulance</span></a></li>
+    <li><a href="#" onclick="showPage('about')" id="nav-about" data-en="About Us" data-hi="हमारे बारे में"><span id="t-nav-about">About Us</span></a></li>
+    <li><a href="#" onclick="showPage('contact')" id="nav-contact" data-en="Contact" data-hi="संपर्क"><span id="t-nav-contact">Contact</span></a></li>
+  </ul>
+
+  <div style="display:flex;align-items:center;gap:10px">
+    <!-- Language + Theme controls -->
+    <div class="nav-controls">
+      <div class="lang-toggle" id="langToggle" title="Switch Language">
+        <button class="lang-btn active" id="langEN" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" id="langHI" onclick="setLang('hi')">हि</button>
+      </div>
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">☀️</button>
+    </div>
+
+    <div class="nav-cta">
+      <a class="btn btn-outline" href="tel:9518656024" data-en="📞 Call Now" data-hi="📞 कॉल करें"><span id="t-nav-cta-call">📞 Call Now</span></a>
+      <a class="btn btn-green" href="#" onclick="showPage('booking')" data-en="Book Test" data-hi="टेस्ट बुक करें"><span id="t-nav-cta-book">Book Test</span></a>
+    </div>
+
+    <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu" onclick="closeMobileMenu(event)">
+  <div class="mobile-menu-inner" id="mobileMenuInner">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 0 16px;border-bottom:1px solid var(--border);margin-bottom:8px">
+      <div style="font-weight:700;font-size:16px;color:var(--text-primary)" id="menuTitle"><span id="t-menu-title">Menu</span></div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <div class="lang-toggle">
+          <button class="lang-btn active" id="mobileLangEN" onclick="setLang('en')">EN</button>
+          <button class="lang-btn" id="mobileLangHI" onclick="setLang('hi')">हि</button>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" style="width:32px;height:32px;font-size:13px">☀️</button>
+      </div>
+    </div>
+    <a href="#" onclick="showPage('home');closeMobileMenu()" data-en="🏠 Home" data-hi="🏠 होम"><span id="t-m-home">🏠 Home</span></a>
+    <a href="#" onclick="showPage('services');closeMobileMenu()" data-en="🔬 Services" data-hi="🔬 सेवाएं"><span id="t-m-services">🔬 Services</span></a>
+    <a href="#" onclick="showPage('packages');closeMobileMenu()" data-en="📦 Health Packages" data-hi="📦 स्वास्थ्य पैकेज"><span id="t-m-packages">📦 Health Packages</span></a>
+    <a href="#" onclick="showPage('ambulance');closeMobileMenu()" data-en="🚑 24/7 Ambulance" data-hi="🚑 एंबुलेंस सेवा"><span id="t-m-ambulance">🚑 24/7 Ambulance</span></a>
+    <a href="#" onclick="showPage('about');closeMobileMenu()" data-en="👨‍⚕️ About Us" data-hi="👨‍⚕️ हमारे बारे में"><span id="t-m-about">👨‍⚕️ About Us</span></a>
+    <a href="#" onclick="showPage('contact');closeMobileMenu()" data-en="📍 Contact" data-hi="📍 संपर्क"><span id="t-m-contact">📍 Contact</span></a>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:8px">
+      <a class="btn btn-green" style="width:100%;justify-content:center" href="#" onclick="showPage('booking');closeMobileMenu()" data-en="Book Test Now" data-hi="अभी टेस्ट बुक करें"><span id="t-m-book">Book Test Now</span></a>
+      <a class="btn" style="width:100%;justify-content:center;background:#dc2626;color:white" href="tel:9518656024">📞 9518656024</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- PAGE: HOME -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg-orb orb1"></div>
+  <div class="hero-bg-orb orb2"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-badge"><div class="dot"></div> <span data-en="Trusted by 2,800+ Families — Sonipat & Ganaur" data-hi="2,800+ परिवारों का विश्वास — सोनीपत & गनौर"><span id="t-hero-badge">Trusted by 2,800+ Families — Sonipat & Ganaur</span></div>
+      <h1 id="t-hero-h1">Your Health, <span class="accent">Delivered</span><br>to Your Door</h1>
+      <div class="hero-hindi">स्वस्थ आप, खुशहाल परिवार 🙏</div>
+      <p id="t-hero-sub" class="hero-sub" data-en="Lab tests, medicine delivery, doctor consultations & 24/7 ambulance service — all from one trusted neighborhood health partner. No clinic visit needed." data-hi="लैब टेस्ट, दवाई डिलीवरी, डॉक्टर कंसल्टेशन और 24/7 एंबुलेंस — एक भरोसेमंद हेल्थ पार्टनर। क्लिनिक जाने की ज़रूरत नहीं।">Lab tests, medicine delivery, doctor consultations & 24/7 ambulance service — all from one trusted neighborhood health partner. No clinic visit needed.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary btn-lg" href="#" onclick="showPage('booking')" data-en="📋 Book Free Home Collection" data-hi="📋 फ्री होम कलेक्शन बुक करें"><span id="t-hero-cta1">📋 Book Free Home Collection</span></a>
+        <a class="btn btn-whatsapp btn-lg" href="https://wa.me/919518656024?text=Namaste! I want to book a health test." target="_blank" data-en="💬 WhatsApp Us" data-hi="💬 WhatsApp करें"><span id="t-hero-cta2">💬 WhatsApp Us</span></a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num">2,800+</div><div class="label" data-en="Families Served" data-hi="परिवार सेवित"><span id="t-hero-lbl1">Families Served</span></div></div>
+        <div class="hero-stat"><div class="num">4.9★</div><div class="label" data-en="Google Rating" data-hi="Google रेटिंग"><span id="t-hero-lbl2">Google Rating</span></div></div>
+        <div class="hero-stat"><div class="num">12 min</div><div class="label" data-en="Avg Ambulance ETA" data-hi="औसत एंबुलेंस समय"><span id="t-hero-lbl3">Avg Ambulance ETA</span></div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="floating-card">
+        <div class="fc-icon" style="background:rgba(0,188,212,0.2)">🔬</div>
+        <div class="fc-text">
+          <div class="label" id="t-fc-lbl1">Most Popular Package</div>
+          <div class="value" id="t-fc-val1">Essential Wellness — ₹999</div>
+        </div>
+      </div>
+      <div class="floating-card">
+        <div class="fc-icon" style="background:rgba(46,139,87,0.25)">🏠</div>
+        <div class="fc-text">
+          <div class="label" id="t-fc-lbl2">Free Service</div>
+          <div class="value" id="t-fc-val2">Home Sample Collection</div>
+        </div>
+      </div>
+      <div class="floating-card">
+        <div class="fc-icon" style="background:rgba(220,38,38,0.2)">🚑</div>
+        <div class="fc-text">
+          <div class="label" id="t-fc-lbl3">24/7 Available</div>
+          <div class="value" id="t-fc-val3">Ambulance with Live Tracking</div>
+        </div>
+      </div>
+      <div class="floating-card">
+        <div class="fc-icon" style="background:rgba(245,158,11,0.2)">📱</div>
+        <div class="fc-text">
+          <div class="label" id="t-fc-lbl4">Same Day</div>
+          <div class="value" id="t-fc-val4">Reports via WhatsApp</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services (Preview) -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-header text-center">
+      <div class="section-tag" id="t-h-svc-tag">Our Services</div>
+      <h2 class="section-title" id="t-h-svc-title">Everything Your Family Needs,<br><em>Under One Roof</em></h2>
+      <p class="section-sub" id="t-h-svc-sub">From routine blood tests to emergency ambulance — a complete health ecosystem for your neighbourhood.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" style="--card-color-a:#1B4D72;--card-color-b:#2563a8" onclick="showPage('services')">
+        <div class="sc-icon-wrap" style="background:var(--blue-light)"><span style="font-size:28px">🔬</span></div>
+        <div class="sc-badge" style="background:var(--blue-light);color:var(--blue)" id="t-sc1-badge">Lab Tests</div>
+        <div class="sc-title" id="t-sc1-title">Blood & Urine Tests</div>
+        <div class="sc-desc" id="t-sc1-desc">CBC, Sugar, Lipid, LFT, KFT, Thyroid, Vitamin panels and 200+ more parameters.</div>
+        <div class="sc-arrow" id="t-sc1-arrow">Learn more →</div>
+      </div>
+      <div class="service-card" style="--card-color-a:#7f1d1d;--card-color-b:#dc2626" onclick="showPage('ambulance')">
+        <div class="sc-icon-wrap" style="background:#fef2f2"><span style="font-size:28px">🚑</span></div>
+        <div class="sc-badge" style="background:#fef2f2;color:var(--red)" id="t-sc2-badge">Emergency</div>
+        <div class="sc-title" id="t-sc2-title">24/7 Ambulance</div>
+        <div class="sc-desc" id="t-sc2-desc">GPS-tracked ambulance dispatched in minutes. Call once, we handle the rest.</div>
+        <div class="sc-arrow" id="t-sc2-arrow">Learn more →</div>
+      </div>
+      <div class="service-card" style="--card-color-a:#1e7a4e;--card-color-b:#2E8B57" onclick="showPage('services')">
+        <div class="sc-icon-wrap" style="background:var(--green-light)"><span style="font-size:28px">💊</span></div>
+        <div class="sc-badge" style="background:var(--green-light);color:var(--green)" id="t-sc3-badge">Delivery</div>
+        <div class="sc-title" id="t-sc3-title">Medicine Delivery</div>
+        <div class="sc-desc" id="t-sc3-desc">Prescribed medicines delivered to your doorstep. Same-day delivery available.</div>
+        <div class="sc-arrow" id="t-sc3-arrow">Learn more →</div>
+      </div>
+      <div class="service-card" style="--card-color-a:#5b21b6;--card-color-b:#7c3aed" onclick="showPage('booking')">
+        <div class="sc-icon-wrap" style="background:#f5f3ff"><span style="font-size:28px">👨‍⚕️</span></div>
+        <div class="sc-badge" style="background:#f5f3ff;color:#7c3aed" id="t-sc4-badge">Consultation</div>
+        <div class="sc-title" id="t-sc4-title">Doctor Consultation</div>
+        <div class="sc-desc" id="t-sc4-desc">In-clinic and tele-consultation with experienced doctors. Hindi-speaking staff.</div>
+        <div class="sc-arrow" id="t-sc4-arrow">Book Now →</div>
+      </div>
+      <div class="service-card" style="--card-color-a:#0097a7;--card-color-b:#00BCD4" onclick="showPage('booking')">
+        <div class="sc-icon-wrap" style="background:var(--cyan-light)"><span style="font-size:28px">🏠</span></div>
+        <div class="sc-badge" style="background:#e0f7fa;color:var(--teal)" id="t-sc5-badge">FREE Service</div>
+        <div class="sc-title" id="t-sc5-title">Home Sample Collection</div>
+        <div class="sc-desc" id="t-sc5-desc">Our trained phlebotomist visits your home. No clinic visit needed. Completely free.</div>
+        <div class="sc-arrow" id="t-sc5-arrow">Book Now →</div>
+      </div>
+      <div class="service-card" style="--card-color-a:#b45309;--card-color-b:#d97706" onclick="showPage('services')">
+        <div class="sc-icon-wrap" style="background:#fffbeb"><span style="font-size:28px">🧘</span></div>
+        <div class="sc-badge" style="background:#fffbeb;color:#b45309" id="t-sc6-badge">At Home</div>
+        <div class="sc-title" id="t-sc6-title">Physiotherapy</div>
+        <div class="sc-desc" id="t-sc6-desc">Pain relief, recovery & rehabilitation by trained physiotherapists at your home.</div>
+        <div class="sc-arrow" style="color:#b45309" id="t-sc6-arrow">Learn more →</div>
+      </div>
+      <div class="service-card" style="--card-color-a:#0f766e;--card-color-b:#14b8a6" onclick="showPage('services')">
+        <div class="sc-icon-wrap" style="background:#f0fdfa"><span style="font-size:28px">🛏️</span></div>
+        <div class="sc-badge" style="background:#f0fdfa;color:#0f766e" id="t-sc7-badge">Rental</div>
+        <div class="sc-title" id="t-sc7-title">Medical Equipment</div>
+        <div class="sc-desc" id="t-sc7-desc">Hospital bed, oxygen concentrator, BP monitor, suction machine — doorstep delivery.</div>
+        <div class="sc-arrow" style="color:#0f766e" id="t-sc7-arrow">Learn more →</div>
+      </div>
+      <div class="service-card" style="--card-color-a:#0284c7;--card-color-b:#0ea5e9" onclick="showPage('services')">
+        <div class="sc-icon-wrap" style="background:#e0f2fe"><span style="font-size:28px">🥗</span></div>
+        <div class="sc-badge" style="background:#e0f2fe;color:#0284c7" id="t-sc8-badge">Wellness</div>
+        <div class="sc-title" id="t-sc8-title">Diseases Diet Charts</div>
+        <div class="sc-desc" id="t-sc8-desc">Personalized diet plans for diabetes, cardiac, kidney disease and weight management.</div>
+        <div class="sc-arrow" style="color:#0284c7" id="t-sc8-arrow">Learn more →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Numbers -->
+<section class="section trust-section">
+  <div class="section-inner">
+    <div class="section-header text-center">
+      <div class="section-tag" id="t-trust-tag">Why Trust Us</div>
+      <h2 class="section-title" id="t-trust-title">Numbers That Speak for <em>Themselves</em></h2>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="trust-num">2,800+</div>
+        <div class="trust-label" id="t-trust-lbl1">Families Served</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-num">4.9★</div>
+        <div class="trust-label" id="t-trust-lbl2">Google Rating</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-num">200+</div>
+        <div class="trust-label" id="t-trust-lbl3">Tests Available</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-num">12 min</div>
+        <div class="trust-label" id="t-trust-lbl4">Avg Ambulance ETA</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-num">NABL</div>
+        <div class="trust-label" id="t-trust-lbl5">Certified Laboratory</div>
+      </div>
+    </div>
+    <div class="offer-banner">
+      <div class="offer-text">
+        <div class="offer-title" id="t-offer-title">🏠 Free Sample Collection from Your Home</div>
+        <div class="offer-sub" id="t-offer-sub">No clinic visit needed — our team comes to you. Same-day reports via WhatsApp.</div>
+      </div>
+      <a class="btn" style="background:white;color:var(--green);font-size:15px;padding:13px 26px;white-space:nowrap" href="#" onclick="showPage('booking')"><span id="t-offer-btn">Book Free Collection →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="section" style="background:var(--gray-50)">
+  <div class="section-inner">
+    <div class="section-header text-center">
+      <div class="section-tag" id="t-hiw-tag">Simple Process</div>
+      <h2 class="section-title" id="t-hiw-title">Book a Test in <em>3 Minutes</em></h2>
+      <p class="section-sub" id="t-hiw-sub">No paperwork, no waiting rooms. Just four easy steps and we come to you.</p>
+    </div>
+    <div class="process-steps">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-title" id="t-step1-title">Choose Test or Package</div>
+        <div class="step-desc" id="t-step1-desc">Select from our 200+ tests or affordable family packages starting at ₹799.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-title" id="t-step2-title">Book in 3 Taps</div>
+        <div class="step-desc" id="t-step2-desc">Name, phone, and preferred time — that's it. WhatsApp confirmation instant.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-title" id="t-step3-title">We Come to You</div>
+        <div class="step-desc" id="t-step3-desc">Our trained professional arrives at your chosen time. Completely free home visit.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div class="step-title" id="t-step4-title">Get Reports on WhatsApp</div>
+        <div class="step-desc" id="t-step4-desc">Digital reports delivered same day, right to your WhatsApp. Share with any doctor.</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px">
+      <a class="btn btn-primary btn-lg" href="#" onclick="showPage('booking')"><span id="t-hiw-cta">Start Booking Now →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- Packages Preview -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-header text-center">
+      <div class="section-tag" id="t-h-pkg-tag">Health Packages</div>
+      <h2 class="section-title" id="t-h-pkg-title">Transparent Pricing,<br><em>No Hidden Costs</em></h2>
+      <p class="section-sub" id="t-h-pkg-sub">Three carefully curated packages for every family's need. What you see is what you pay.</p>
+    </div>
+    <div class="packages-grid">
+      <div class="pkg-card">
+        <div class="pkg-badge" style="background:var(--blue-light);color:var(--blue)" id="t-hp1-badge">STARTER</div>
+        <div class="pkg-name" id="t-hp1-name">Basic Wellness</div>
+        <div class="pkg-price"><sup>₹</sup>799</div>
+        <div class="pkg-per" id="t-hp1-per">per person · free home collection</div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li id="t-hp1-f1">CBC — Complete Blood Count</li>
+          <li id="t-hp1-f2">Blood Sugar (Fasting & PP)</li>
+          <li id="t-hp1-f3">Lipid Profile</li>
+          <li id="t-hp1-f4">Same-Day WhatsApp Report</li>
+          <li id="t-hp1-f5">Free Home Collection</li>
+        </ul>
+        <a class="btn btn-outline" style="width:100%;justify-content:center" href="#" onclick="showPage('booking')" id="t-hp1-btn">Book This Package</a>
+      </div>
+      <div class="pkg-card featured">
+        <div class="pkg-badge" style="background:rgba(0,188,212,0.2);color:var(--cyan)" id="t-hp2-badge">⭐ MOST POPULAR</div>
+        <div class="pkg-name" style="color:white" id="t-hp2-name">Advanced Care</div>
+        <div class="pkg-price" style="color:var(--cyan)"><sup>₹</sup>999</div>
+        <div class="pkg-per" id="t-hp2-per">per person · free home collection</div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li id="t-hp2-f1">CBC</li>
+          <li id="t-hp2-f2">Liver Function Test (LFT)</li>
+          <li id="t-hp2-f3">Kidney Function Test (KFT)</li>
+          <li id="t-hp2-f4">Thyroid Profile (T3/T4/TSH)</li>
+          <li id="t-hp2-f5">Same-Day Report + Free Collection</li>
+        </ul>
+        <a class="btn" style="background:var(--cyan);color:#003a40;width:100%;justify-content:center;font-weight:700" href="#" onclick="showPage('booking')" id="t-hp2-btn">Book This Package</a>
+      </div>
+      <div class="pkg-card">
+        <div class="pkg-badge" style="background:var(--green-light);color:var(--green)" id="t-hp3-badge">COMPREHENSIVE</div>
+        <div class="pkg-name" id="t-hp3-name">Premium Full Body</div>
+        <div class="pkg-price"><sup>₹</sup>1,299</div>
+        <div class="pkg-per" id="t-hp3-per">per person · free home collection</div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li id="t-hp3-f1">60+ Parameters</li>
+          <li id="t-hp3-f2">Diabetes, Heart, Liver, Kidney</li>
+          <li id="t-hp3-f3">Thyroid + Vitamin D &amp; B12</li>
+          <li id="t-hp3-f4">Iron Studies + CBC</li>
+          <li id="t-hp3-f5">Doctor Consultation Included</li>
+        </ul>
+        <a class="btn btn-green" style="width:100%;justify-content:center" href="#" onclick="showPage('booking')" id="t-hp3-btn">Book This Package</a>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:13px;color:var(--gray-400);margin-top:20px" id="t-h-pkg-note">* All packages include free home collection • Same-day report delivery • WhatsApp report</p>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section testimonials-section">
+  <div class="section-inner">
+    <div class="section-header text-center">
+      <div class="section-tag" id="t-test-tag">Patient Stories</div>
+      <h2 class="section-title" id="t-test-title">What Your <em>Neighbors</em> Say</h2>
+      <p class="section-sub" id="t-test-sub">Real patients from your city, real experiences. We let their words speak for us.</p>
+    </div>
+    <div class="testimonials-slider">
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <div class="t-quote">"Maa ke liye ghar pe aake blood test liya — bahut professional aur jaldi report bhi WhatsApp pe mili. Apollo se zyada better experience raha!"</div>
+        <div class="t-author">
+          <div class="t-avatar" style="background:linear-gradient(135deg,#1B4D72,#00BCD4)">RS</div>
+          <div><div class="t-name">Ravi Sharma</div><div class="t-loc">📍 Sector 14, Gurugram</div></div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <div class="t-quote">"In the middle of the night, I called for ambulance and they arrived in 14 minutes. The staff was calm and professional. Truly a lifesaver for our area!"</div>
+        <div class="t-author">
+          <div class="t-avatar" style="background:linear-gradient(135deg,#1e7a4e,#2E8B57)">PM</div>
+          <div><div class="t-name">Priya Mehta</div><div class="t-loc">📍 Lajpat Nagar</div></div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <div class="t-quote">"₹999 mein itne saare tests! Pura family ka checkup kar liya. Phlebotomist very gentle tha aur Hindi mein sab samjhaya. Ye local lab number one hai!"</div>
+        <div class="t-author">
+          <div class="t-avatar" style="background:linear-gradient(135deg,#7f1d1d,#dc2626)">SK</div>
+          <div><div class="t-name">Sunita Kapoor</div><div class="t-loc">📍 Dwarka, Delhi</div></div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px">
+      <a href="https://g.page/r/apex-health/review" target="_blank" class="btn btn-outline" style="border-color:rgba(255,255,255,0.3);color:white"><span id="t-test-reviews-btn">See All 200+ Google Reviews →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="section" style="background:var(--gray-50)">
+  <div class="section-inner text-center">
+    <div class="section-tag" id="t-cta-tag">Get Started Today</div>
+    <h2 class="section-title" id="t-cta-title">Ready to Take Care of Your <em>Health?</em></h2>
+    <p class="section-sub" style="margin:0 auto 36px" id="t-cta-sub">Book your free home collection in under 3 minutes. No clinic visit, no waiting, no hidden charges.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <a class="btn btn-primary btn-lg" href="#" onclick="showPage('booking')"><span id="t-cta-btn1">📋 Book Free Home Collection</span></a>
+      <a class="btn btn-whatsapp btn-lg" href="https://wa.me/919518656024" target="_blank">💬 WhatsApp: +91 95186 56024</a>
+      <a class="btn btn-outline btn-lg" href="tel:9518656024"><span id="t-cta-btn3">📞 Call Now</span></a>
+    </div>
+  </div>
+</section>
+
+</div><!-- /page-home -->
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- PAGE: SERVICES -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-services">
+<section style="background:linear-gradient(135deg,#0a1f35,#1B4D72);padding:64px 24px;color:white;text-align:center">
+  <div style="max-width:700px;margin:0 auto">
+    <div class="section-tag" style="color:var(--cyan)" id="t-svc-hero-tag">All Services</div>
+    <h1 class="section-title" style="color:white;margin-bottom:16px" id="t-svc-hero-title">Complete Health Services<br><em style="color:var(--cyan)">For Your Whole Family</em></h1>
+    <p style="color:rgba(255,255,255,0.65);font-size:16px" id="t-svc-hero-sub">One call or tap away from everything your family needs — from routine tests to emergencies.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+
+    <!-- Lab Tests -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:72px">
+      <div>
+        <div class="chip" style="margin-bottom:16px" id="t-svc-lab-tag">🔬 Lab Tests</div>
+        <h2 class="section-title" style="font-size:32px" id="t-svc-lab-title">Accurate Diagnostics,<br><em>NABL Certified</em></h2>
+        <p style="color:var(--gray-600);margin-bottom:24px;line-height:1.7" id="t-svc-lab-desc">Our NABL-certified laboratory uses state-of-the-art equipment to deliver precise results. Every test is double-checked before being sent to you.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px">
+          <div class="chip">CBC</div><div class="chip">Lipid Profile</div>
+          <div class="chip">Blood Sugar</div><div class="chip">Liver Function</div>
+          <div class="chip">Kidney Function</div><div class="chip">Thyroid Panel</div>
+          <div class="chip">Vitamin D & B12</div><div class="chip">HbA1c</div>
+        </div>
+        <a class="btn btn-primary" href="#" onclick="showPage('booking')"><span id="t-svc-lab-btn">Book Lab Test →</span></a>
+      </div>
+      <div style="background:var(--blue-pale);border-radius:20px;padding:32px;border:1px solid var(--gray-200)">
+        <div style="font-weight:700;color:var(--blue);margin-bottom:20px;font-size:16px" id="t-svc-lab-list">200+ Tests Available Including:</div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--gray-200);font-size:14px"><span>Complete Blood Count (CBC)</span><span style="color:var(--blue);font-weight:600">₹299</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--gray-200);font-size:14px"><span>Fasting Blood Sugar</span><span style="color:var(--blue);font-weight:600">₹149</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--gray-200);font-size:14px"><span>Lipid Profile</span><span style="color:var(--blue);font-weight:600">₹399</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--gray-200);font-size:14px"><span>Thyroid (T3/T4/TSH)</span><span style="color:var(--blue);font-weight:600">₹499</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--gray-200);font-size:14px"><span>Vitamin D</span><span style="color:var(--blue);font-weight:600">₹699</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;font-size:14px"><span>Urine Routine</span><span style="color:var(--blue);font-weight:600">₹199</span></div>
+        </div>
+        <div style="margin-top:16px;padding:12px;background:var(--green-light);border-radius:10px;font-size:13px;color:var(--green);font-weight:600" id="t-svc-lab-free">✅ Free home collection on all tests above ₹299</div>
+      </div>
+    </div>
+
+    <!-- Home Collection -->
+    <div style="background:linear-gradient(135deg,var(--green),var(--teal));border-radius:20px;padding:40px;color:white;display:flex;align-items:center;gap:40px;margin-bottom:72px;flex-wrap:wrap">
+      <div style="font-size:80px">🏠</div>
+      <div style="flex:1;min-width:240px">
+        <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.7;margin-bottom:8px" id="t-svc-home-sig">Our Signature Service</div>
+        <h2 style="font-family:var(--serif);font-size:30px;margin-bottom:12px;color:white" id="t-svc-home-title">Free Home Sample Collection</h2>
+        <p style="opacity:0.85;font-size:15px;line-height:1.7;margin-bottom:20px" id="t-svc-home-desc">अब लैब टेस्ट के लिए क्लिनिक आने की ज़रूरत नहीं। Our trained phlebotomist visits your home at your scheduled time — completely free, no minimum order.</p>
+        <a class="btn" style="background:white;color:var(--green);font-weight:700" href="#" onclick="showPage('booking')"><span id="t-svc-home-btn">Schedule Free Collection →</span></a>
+      </div>
+    </div>
+
+    <!-- Other Services Grid -->
+    <div class="section-header text-center">
+      <div class="section-tag" id="t-svc-more-tag">More Services</div>
+      <h2 class="section-title" id="t-svc-more-title">Beyond Diagnostics</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" style="--card-color-a:#7c3aed;--card-color-b:#6d28d9" onclick="showPage('booking')">
+        <div class="sc-icon-wrap" style="background:#f5f3ff;font-size:28px">👨‍⚕️</div>
+        <div class="sc-badge" style="background:#f5f3ff;color:#7c3aed" id="t-svc-doc-badge">Consultation</div>
+        <div class="sc-title" id="t-svc-doc-title">Doctor Consultation</div>
+        <div class="sc-desc" id="t-svc-doc-desc">In-clinic and tele-consultation. Hindi-speaking doctors who take time to explain.</div>
+        <div class="sc-arrow" style="color:#7c3aed" id="t-svc-doc-arrow">Book Appointment →</div>
+      </div>
+      <div class="service-card" style="--card-color-a:#1e7a4e;--card-color-b:#2E8B57">
+        <div class="sc-icon-wrap" style="background:var(--green-light);font-size:28px">💊</div>
+        <div class="sc-badge" style="background:var(--green-light);color:var(--green)" id="t-svc-med-badge">Delivery</div>
+        <div class="sc-title" id="t-svc-med-title">Medicine Delivery</div>
+        <div class="sc-desc" id="t-svc-med-desc">Upload prescription on WhatsApp and get medicines delivered to your door. Same day.</div>
+        <div class="sc-arrow" style="color:var(--green)" id="t-svc-med-arrow">Order Medicines →</div>
+      </div>
+      <div class="service-card" style="--card-color-a:#7f1d1d;--card-color-b:#dc2626" onclick="showPage('ambulance')">
+        <div class="sc-icon-wrap" style="background:#fef2f2;font-size:28px">🚑</div>
+        <div class="sc-badge" style="background:#fef2f2;color:var(--red)" id="t-svc-amb-badge">Emergency</div>
+        <div class="sc-title" id="t-svc-amb-title">24/7 Ambulance</div>
+        <div class="sc-desc" id="t-svc-amb-desc">GPS-tracked ambulance available round the clock. Average response time 12 minutes.</div>
+        <div class="sc-arrow" style="color:var(--red)" id="t-svc-amb-arrow">View Ambulance Service →</div>
+      </div>
+      <div class="service-card" style="--card-color-a:#b45309;--card-color-b:#d97706">
+        <div class="sc-icon-wrap" style="background:#fffbeb;font-size:28px">🧘</div>
+        <div class="sc-badge" style="background:#fffbeb;color:#b45309" id="t-svc-phy-badge">At Home</div>
+        <div class="sc-title" id="t-svc-phy-title">Physiotherapy</div>
+        <div class="sc-desc" id="t-svc-phy-desc">Pain relief, recovery & rehabilitation by trained physiotherapists — at your home.</div>
+        <div class="sc-arrow" style="color:#b45309" id="t-svc-phy-arrow">Book Session →</div>
+      </div>
+      <div class="service-card" style="--card-color-a:#0284c7;--card-color-b:#0ea5e9">
+        <div class="sc-icon-wrap" style="background:#e0f2fe;font-size:28px">🥗</div>
+        <div class="sc-badge" style="background:#e0f2fe;color:#0284c7" id="t-svc-diet-badge">Wellness</div>
+        <div class="sc-title" id="t-svc-diet-title">Disease Diet Charts</div>
+        <div class="sc-desc" id="t-svc-diet-desc">Personalized diet plans for diabetes, heart, kidney, and weight management by experts.</div>
+        <div class="sc-arrow" style="color:#0284c7" id="t-svc-diet-arrow">Get Diet Plan →</div>
+      </div>
+    </div>
+
+    <!-- Medical Equipment on Rent -->
+    <div style="margin-top:72px">
+      <div class="section-header text-center">
+        <div class="section-tag" id="t-equip-tag">Equipment on Rent</div>
+        <h2 class="section-title" id="t-equip-title">Medical Equipment <em>at Your Doorstep</em></h2>
+        <p class="section-sub" style="margin:0 auto" id="t-equip-sub">Affordable rental of quality medical equipment — delivered and set up at your home.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-bottom:20px">
+        <div style="background:var(--blue-pale);border:1px solid var(--gray-200);border-radius:14px;padding:20px;text-align:center">
+          <div style="font-size:32px;margin-bottom:8px">🛏️</div>
+          <div style="font-weight:700;font-size:13px;color:var(--blue)">Hospital Bed</div>
+          <div style="font-size:11px;color:var(--gray-500);margin-top:4px">Manual & electric</div>
+        </div>
+        <div style="background:var(--blue-pale);border:1px solid var(--gray-200);border-radius:14px;padding:20px;text-align:center">
+          <div style="font-size:32px;margin-bottom:8px">💓</div>
+          <div style="font-weight:700;font-size:13px;color:var(--blue)">B.P Monitor</div>
+          <div style="font-size:11px;color:var(--gray-500);margin-top:4px">Digital automatic</div>
+        </div>
+        <div style="background:var(--blue-pale);border:1px solid var(--gray-200);border-radius:14px;padding:20px;text-align:center">
+          <div style="font-size:32px;margin-bottom:8px">💨</div>
+          <div style="font-weight:700;font-size:13px;color:var(--blue)">Oxygen Concentrator</div>
+          <div style="font-size:11px;color:var(--gray-500);margin-top:4px">5L / 10L models</div>
+        </div>
+        <div style="background:var(--blue-pale);border:1px solid var(--gray-200);border-radius:14px;padding:20px;text-align:center">
+          <div style="font-size:32px;margin-bottom:8px">🩺</div>
+          <div style="font-weight:700;font-size:13px;color:var(--blue)">Suction Machine</div>
+          <div style="font-size:11px;color:var(--gray-500);margin-top:4px">Portable electric</div>
+        </div>
+        <div style="background:var(--blue-pale);border:1px solid var(--gray-200);border-radius:14px;padding:20px;text-align:center">
+          <div style="font-size:32px;margin-bottom:8px">😮‍💨</div>
+          <div style="font-weight:700;font-size:13px;color:var(--blue)">BiPAP Machine</div>
+          <div style="font-size:11px;color:var(--gray-500);margin-top:4px">For sleep apnea / ICU</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:16px">
+        <span style="background:var(--green-light);color:var(--green);padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700">✅ Quality Equipment</span>
+        <span style="background:var(--green-light);color:var(--green);padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700">💰 Affordable Rental</span>
+        <span style="background:var(--green-light);color:var(--green);padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700">🚚 Doorstep Delivery</span>
+      </div>
+      <div style="text-align:center">
+        <a class="btn btn-whatsapp" href="https://wa.me/919518656024?text=I need medical equipment on rent. Please share availability and pricing." target="_blank"><span id="t-equip-wa-btn">💬 WhatsApp for Rental Pricing</span></a>
+      </div>
+    </div>
+
+    <!-- Medical Service at Home -->
+    <div style="margin-top:72px;margin-bottom:16px">
+      <div class="section-header text-center">
+        <div class="section-tag" id="t-home-svc-tag">Medical Service at Home</div>
+        <h2 class="section-title" id="t-home-svc-title">Clinical Care, <em>Now at Home</em></h2>
+        <p class="section-sub" style="margin:0 auto" id="t-home-svc-sub">Trained medical staff visit your home for injections, IV drips, dressings, catheter care, and more.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px">
+        <div style="background:var(--gray-50);border:1px solid var(--gray-200);border-radius:14px;padding:20px;text-align:center">
+          <div style="font-size:28px;margin-bottom:8px">🩹</div>
+          <div style="font-weight:700;font-size:13px;color:var(--gray-800)">Dressing</div>
+          <div style="font-size:11px;color:var(--gray-500);margin-top:4px">Wound care at home</div>
+        </div>
+        <div style="background:var(--gray-50);border:1px solid var(--gray-200);border-radius:14px;padding:20px;text-align:center">
+          <div style="font-size:28px;margin-bottom:8px">💉</div>
+          <div style="font-weight:700;font-size:13px;color:var(--gray-800)">Injection IV/IM</div>
+          <div style="font-size:11px;color:var(--gray-500);margin-top:4px">At-home administration</div>
+        </div>
+        <div style="background:var(--gray-50);border:1px solid var(--gray-200);border-radius:14px;padding:20px;text-align:center">
+          <div style="font-size:28px;margin-bottom:8px">🫀</div>
+          <div style="font-weight:700;font-size:13px;color:var(--gray-800)">Drip IV Fluids</div>
+          <div style="font-size:11px;color:var(--gray-500);margin-top:4px">Saline / glucose drips</div>
+        </div>
+        <div style="background:var(--gray-50);border:1px solid var(--gray-200);border-radius:14px;padding:20px;text-align:center">
+          <div style="font-size:28px;margin-bottom:8px">🌡️</div>
+          <div style="font-weight:700;font-size:13px;color:var(--gray-800)">Catheter Care</div>
+          <div style="font-size:11px;color:var(--gray-500);margin-top:4px">Male & Female catheter</div>
+        </div>
+        <div style="background:var(--gray-50);border:1px solid var(--gray-200);border-radius:14px;padding:20px;text-align:center">
+          <div style="font-size:28px;margin-bottom:8px">🧑‍⚕️</div>
+          <div style="font-weight:700;font-size:13px;color:var(--gray-800)">Home Patient Care</div>
+          <div style="font-size:11px;color:var(--gray-500);margin-top:4px">Trained care attendants</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:24px">
+        <a class="btn btn-primary" href="https://wa.me/919518656024?text=I need medical home care service. Please share details and pricing." target="_blank"><span id="t-home-svc-btn">Book Home Medical Service</span></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- PAGE: PACKAGES -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-packages">
+<section style="background:linear-gradient(135deg,#0a1f35,#1B4D72);padding:64px 24px;color:white;text-align:center">
+  <div style="max-width:700px;margin:0 auto">
+    <div class="section-tag" style="color:var(--cyan)">Health Packages</div>
+    <h1 class="section-title" style="color:white;margin-bottom:16px">Invest in Your Health,<br><em style="color:var(--cyan)">Not Your Worry</em></h1>
+    <p style="color:rgba(255,255,255,0.65);font-size:16px">Curated packages for every stage of life. Transparent pricing, no hidden costs, free home collection included.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px">
+      <a style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.2);padding:8px 18px;border-radius:999px;font-size:12px;font-weight:600;text-decoration:none;cursor:pointer" href="#pkg-health">🧬 Health Checkup</a>
+      <a style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.2);padding:8px 18px;border-radius:999px;font-size:12px;font-weight:600;text-decoration:none;cursor:pointer" href="#pkg-diabetes">🩸 Diabetes</a>
+      <a style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.2);padding:8px 18px;border-radius:999px;font-size:12px;font-weight:600;text-decoration:none;cursor:pointer" href="#pkg-fever">🤒 Fever</a>
+      <a style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.2);padding:8px 18px;border-radius:999px;font-size:12px;font-weight:600;text-decoration:none;cursor:pointer" href="#pkg-stress">💆 Stress</a>
+      <a style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.2);padding:8px 18px;border-radius:999px;font-size:12px;font-weight:600;text-decoration:none;cursor:pointer" href="#pkg-imaging">🩻 Imaging</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="pkg-health">
+  <div class="section-inner">
+
+    <!-- Section label -->
+    <div class="section-header" style="text-align:center">
+      <div class="section-tag">Health Checkup Packages</div>
+      <h2 class="section-title">Complete <em>Body Checkup</em> Packages</h2>
+      <p class="section-sub" style="margin:0 auto">All packages include free home collection · Same-day WhatsApp report · NABL certified results</p>
+    </div>
+
+    <!-- Health Packages Grid (5 packages from PDF) -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:48px">
+
+      <!-- 1. Basic Care ₹799 -->
+      <div class="pkg-card" style="border-color:var(--gray-200)">
+        <div class="pkg-badge" style="background:var(--blue-light);color:var(--blue)">ROUTINE HEALTH SCREENING</div>
+        <div class="pkg-name">Apex Basic Care Package</div>
+        <div style="display:flex;align-items:baseline;gap:8px;margin:8px 0 4px">
+          <div class="pkg-price" style="margin:0"><sup>₹</sup>799</div>
+          <div style="font-size:13px;color:var(--gray-400);text-decoration:line-through">₹999</div>
+        </div>
+        <div class="pkg-per">per person · free home collection</div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li>Lipid Profile</li>
+          <li>Kidney Function Test (KFT)</li>
+          <li>Liver Function Test (LFT)</li>
+          <li>Complete Blood Count (CBC)</li>
+          <li>Complete Urine Examination</li>
+          <li>Blood Sugar Fasting</li>
+          <li>Calcium</li>
+        </ul>
+        <a class="btn btn-primary" style="width:100%;justify-content:center" href="#" onclick="showPage('booking')">Book This Package</a>
+      </div>
+
+      <!-- 2. Essential Wellness ₹999 -->
+      <div class="pkg-card featured">
+        <div class="pkg-badge" style="background:rgba(0,188,212,0.2);color:var(--cyan)">⭐ MOST POPULAR · PREVENTIVE CHECK</div>
+        <div class="pkg-name" style="color:white">Apex Essential Wellness</div>
+        <div style="display:flex;align-items:baseline;gap:8px;margin:8px 0 4px">
+          <div class="pkg-price" style="margin:0;color:var(--cyan)"><sup>₹</sup>999</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.4);text-decoration:line-through">₹1,199</div>
+        </div>
+        <div class="pkg-per">per person · free home collection</div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li>Lipid Profile</li>
+          <li>Thyroid Profile (T3, T4, TSH)</li>
+          <li>Kidney Function Test (KFT)</li>
+          <li>Liver Function Test (LFT)</li>
+          <li>Complete Blood Count (CBC)</li>
+          <li>Complete Urine Examination</li>
+          <li>Blood Sugar Fasting</li>
+          <li>Calcium</li>
+        </ul>
+        <a class="btn" style="background:var(--cyan);color:#003a40;width:100%;justify-content:center;font-weight:700" href="#" onclick="showPage('booking')">Book This Package</a>
+      </div>
+
+      <!-- 3. Advance Health ₹1,999 -->
+      <div class="pkg-card" style="border-color:var(--gray-200)">
+        <div class="pkg-badge" style="background:var(--green-light);color:var(--green)">DETAILED BODY ASSESSMENT</div>
+        <div class="pkg-name">Apex Advance Health</div>
+        <div style="display:flex;align-items:baseline;gap:8px;margin:8px 0 4px">
+          <div class="pkg-price" style="margin:0"><sup>₹</sup>1,999</div>
+          <div style="font-size:13px;color:var(--gray-400);text-decoration:line-through">₹1,499</div>
+        </div>
+        <div class="pkg-per">per person · free home collection</div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li>Lipid Profile</li>
+          <li>Thyroid Profile (T3, T4, TSH)</li>
+          <li>Kidney Function Test (KFT)</li>
+          <li>Liver Function Test (LFT)</li>
+          <li>Complete Blood Count (CBC)</li>
+          <li>Complete Urine Examination</li>
+          <li>Blood Sugar Fasting</li>
+          <li>HbA1C (Diabetes marker)</li>
+          <li>Calcium</li>
+        </ul>
+        <a class="btn btn-green" style="width:100%;justify-content:center" href="#" onclick="showPage('booking')">Book This Package</a>
+      </div>
+
+      <!-- 4. Super Screening ₹1,499 -->
+      <div class="pkg-card" style="border-color:var(--gray-200)">
+        <div class="pkg-badge" style="background:#fef9c3;color:#92400e">COMPREHENSIVE FULL BODY</div>
+        <div class="pkg-name">Apex Super Screening</div>
+        <div style="display:flex;align-items:baseline;gap:8px;margin:8px 0 4px">
+          <div class="pkg-price" style="margin:0"><sup>₹</sup>1,499</div>
+          <div style="font-size:13px;color:var(--gray-400);text-decoration:line-through">₹1,999</div>
+        </div>
+        <div class="pkg-per">per person · free home collection</div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li>Lipid Profile</li>
+          <li>Thyroid Profile (T3, T4, TSH)</li>
+          <li>Kidney Function Test (KFT)</li>
+          <li>Liver Function Test (LFT)</li>
+          <li>Complete Blood Count (CBC)</li>
+          <li>Complete Urine Examination</li>
+          <li>Blood Sugar Fasting + HbA1C</li>
+          <li>Calcium · Iron Profile</li>
+          <li>Vitamin D · Vitamin B12</li>
+        </ul>
+        <a class="btn btn-primary" style="width:100%;justify-content:center" href="#" onclick="showPage('booking')">Book This Package</a>
+      </div>
+
+      <!-- 5. Full Body ₹1,999 -->
+      <div class="pkg-card" style="border-color:var(--gray-200);grid-column:span 1">
+        <div class="pkg-badge" style="background:#f5f3ff;color:#7c3aed">PREMIUM PREVENTIVE SCREENING</div>
+        <div class="pkg-name">Apex Full Body Package</div>
+        <div style="display:flex;align-items:baseline;gap:8px;margin:8px 0 4px">
+          <div class="pkg-price" style="margin:0"><sup>₹</sup>1,999</div>
+          <div style="font-size:13px;color:var(--gray-400);text-decoration:line-through">₹2,499</div>
+        </div>
+        <div class="pkg-per">per person · free home collection</div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li>Lipid Profile · Thyroid Profile</li>
+          <li>Kidney Function Test (KFT)</li>
+          <li>Liver Function Test (LFT)</li>
+          <li>Complete Blood Count (CBC)</li>
+          <li>Complete Urine Examination</li>
+          <li>Blood Sugar Fasting + HbA1C</li>
+          <li>Calcium · Iron Profile</li>
+          <li>Vitamin D · Vitamin B12</li>
+          <li>RA Factor · CRP</li>
+          <li>Testosterone (Total)</li>
+        </ul>
+        <a class="btn btn-primary" style="width:100%;justify-content:center;background:linear-gradient(135deg,#7c3aed,#5b21b6)" href="#" onclick="showPage('booking')">Book Full Body Package</a>
+      </div>
+
+    </div>
+
+    <!-- Why our packages -->
+    <div style="background:var(--gray-50);border-radius:20px;padding:36px;margin-bottom:64px">
+      <h3 style="font-family:var(--serif);font-size:22px;color:var(--blue);margin-bottom:24px;text-align:center">Every Package Includes</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:20px;text-align:center">
+        <div><div style="font-size:32px;margin-bottom:8px">🏠</div><div style="font-weight:700;font-size:13px;margin-bottom:4px">Free Home Collection</div><div style="font-size:12px;color:var(--gray-500)">Our team visits you</div></div>
+        <div><div style="font-size:32px;margin-bottom:8px">📱</div><div style="font-weight:700;font-size:13px;margin-bottom:4px">WhatsApp Reports</div><div style="font-size:12px;color:var(--gray-500)">Same day delivery</div></div>
+        <div><div style="font-size:32px;margin-bottom:8px">✅</div><div style="font-weight:700;font-size:13px;margin-bottom:4px">No Hidden Charges</div><div style="font-size:12px;color:var(--gray-500)">What you see, you pay</div></div>
+        <div><div style="font-size:32px;margin-bottom:8px">🔬</div><div style="font-weight:700;font-size:13px;margin-bottom:4px">NABL Certified</div><div style="font-size:12px;color:var(--gray-500)">Trusted accuracy</div></div>
+        <div><div style="font-size:32px;margin-bottom:8px">🃏</div><div style="font-weight:700;font-size:13px;margin-bottom:4px">TPA / Cashless</div><div style="font-size:12px;color:var(--gray-500)">All panels accepted</div></div>
+      </div>
+    </div>
+
+    <!-- ── DIABETES SECTION ── -->
+    <div id="pkg-diabetes" style="scroll-margin-top:80px">
+      <div class="section-header" style="text-align:center">
+        <div class="section-tag">Diabetes Section</div>
+        <h2 class="section-title">Diabetes <em>Care Packages</em></h2>
+        <p class="section-sub" style="margin:0 auto">Specialized diabetes screening with diet counselling. Know your numbers, manage better.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:64px">
+
+        <div class="pkg-card" style="border-color:#fda4af">
+          <div class="pkg-badge" style="background:#fff1f2;color:#9f1239">DIABETES BASIC</div>
+          <div class="pkg-name">Sugar One</div>
+          <div class="pkg-price"><sup>₹</sup>299</div>
+          <div class="pkg-per">per person · free home collection</div>
+          <div class="pkg-divider"></div>
+          <ul class="pkg-features">
+            <li>Blood Sugar Fasting & Post-Prandial</li>
+            <li>HbA1C</li>
+            <li>Diet Counselling included</li>
+          </ul>
+          <a class="btn" style="width:100%;justify-content:center;background:linear-gradient(135deg,#9f1239,#e11d48);color:white" href="#" onclick="showPage('booking')">Book Sugar One</a>
+        </div>
+
+        <div class="pkg-card" style="border-color:#fda4af">
+          <div class="pkg-badge" style="background:#fff1f2;color:#9f1239">DIABETES ADVANCED</div>
+          <div class="pkg-name">Sugar Screen</div>
+          <div class="pkg-price"><sup>₹</sup>499</div>
+          <div class="pkg-per">per person · free home collection</div>
+          <div class="pkg-divider"></div>
+          <ul class="pkg-features">
+            <li>Blood Sugar Fasting & Post-Prandial</li>
+            <li>HbA1C</li>
+            <li>Lipid Profile</li>
+            <li>Diet Counselling included</li>
+          </ul>
+          <a class="btn" style="width:100%;justify-content:center;background:linear-gradient(135deg,#9f1239,#e11d48);color:white" href="#" onclick="showPage('booking')">Book Sugar Screen</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── FEVER PROFILES ── -->
+    <div id="pkg-fever" style="scroll-margin-top:80px">
+      <div class="section-header" style="text-align:center">
+        <div class="section-tag">Apex Fever Profile</div>
+        <h2 class="section-title">Fever <em>Diagnostic Packages</em></h2>
+        <p class="section-sub" style="margin:0 auto">Quick and accurate fever investigation panels to identify the cause fast.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-bottom:64px">
+
+        <div class="pkg-card">
+          <div class="pkg-badge" style="background:#fff7ed;color:#c2410c">NORMAL FEVER SCREENING</div>
+          <div class="pkg-name">Fever Basic Care</div>
+          <div class="pkg-price"><sup>₹</sup>499</div>
+          <div class="pkg-per">per person · fast turnaround</div>
+          <div class="pkg-divider"></div>
+          <ul class="pkg-features">
+            <li>Urine Routine</li>
+            <li>Complete Blood Count (CBC)</li>
+            <li>Widal</li>
+            <li>ESR</li>
+            <li>Malaria Antigen</li>
+          </ul>
+          <a class="btn btn-outline" style="width:100%;justify-content:center" href="#" onclick="showPage('booking')">Book Now</a>
+        </div>
+
+        <div class="pkg-card">
+          <div class="pkg-badge" style="background:#fff7ed;color:#c2410c">FEVER ESSENTIAL</div>
+          <div class="pkg-name">Fever Essential Package</div>
+          <div class="pkg-price"><sup>₹</sup>599</div>
+          <div class="pkg-per">per person · fast turnaround</div>
+          <div class="pkg-divider"></div>
+          <ul class="pkg-features">
+            <li>Complete Blood Count (CBC)</li>
+            <li>Widal</li>
+            <li>SGOT (AST)</li>
+            <li>SGPT (ALT)</li>
+            <li>Bilirubin Serum</li>
+          </ul>
+          <a class="btn btn-outline" style="width:100%;justify-content:center" href="#" onclick="showPage('booking')">Book Now</a>
+        </div>
+
+        <div class="pkg-card">
+          <div class="pkg-badge" style="background:#fff7ed;color:#c2410c">FEVER ADVANCED</div>
+          <div class="pkg-name">Fever Advance Package</div>
+          <div class="pkg-price"><sup>₹</sup>699</div>
+          <div class="pkg-per">per person · fast turnaround</div>
+          <div class="pkg-divider"></div>
+          <ul class="pkg-features">
+            <li>Urine Routine</li>
+            <li>Complete Blood Count (CBC)</li>
+            <li>Widal · ESR</li>
+            <li>Malaria Antigen</li>
+            <li>CRP (C-Reactive Protein)</li>
+          </ul>
+          <a class="btn btn-outline" style="width:100%;justify-content:center" href="#" onclick="showPage('booking')">Book Now</a>
+        </div>
+
+        <div class="pkg-card featured">
+          <div class="pkg-badge" style="background:rgba(0,188,212,0.2);color:var(--cyan)">⭐ MOST COMPREHENSIVE</div>
+          <div class="pkg-name" style="color:white">Fever Complete Plus</div>
+          <div style="display:flex;align-items:baseline;gap:8px;margin:8px 0 4px">
+            <div class="pkg-price" style="margin:0;color:var(--cyan)"><sup>₹</sup>1,199</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.4);text-decoration:line-through">₹1,999</div>
+          </div>
+          <div class="pkg-per">per person · fast turnaround</div>
+          <div class="pkg-divider"></div>
+          <ul class="pkg-features">
+            <li>Urine Routine</li>
+            <li>Complete Blood Count (CBC)</li>
+            <li>ESR · Malaria Antigen</li>
+            <li>SGPT (ALT) · SGOT (AST)</li>
+            <li>CRP · Typhi Dot IgG/IgM</li>
+            <li>Dengue NS1</li>
+          </ul>
+          <a class="btn" style="background:var(--cyan);color:#003a40;width:100%;justify-content:center;font-weight:700" href="#" onclick="showPage('booking')">Book Fever Complete</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── STRESS IMPACT CHECKUP ── -->
+    <div id="pkg-stress" style="scroll-margin-top:80px">
+      <div class="section-header" style="text-align:center">
+        <div class="section-tag">Stress Impact Checkup</div>
+        <h2 class="section-title">Stress & <em>Lifestyle Packages</em></h2>
+        <p class="section-sub" style="margin:0 auto">Comprehensive panels to assess the hidden impact of stress, smoking, and lifestyle on your body.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:64px">
+
+        <!-- Stress - Men -->
+        <div class="pkg-card" style="border-color:#bfdbfe">
+          <div class="pkg-badge" style="background:var(--blue-light);color:var(--blue)">STRESS IMPACT — FOR MEN</div>
+          <div class="pkg-name">Stress Impact Checkup</div>
+          <div style="display:flex;align-items:baseline;gap:8px;margin:8px 0 4px">
+            <div class="pkg-price" style="margin:0"><sup>₹</sup>2,500</div>
+            <div style="font-size:13px;color:var(--gray-400);text-decoration:line-through">₹3,000</div>
+            <span style="background:#dcfce7;color:#166534;font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px">SAVE ₹500</span>
+          </div>
+          <div class="pkg-per">per person · free home collection</div>
+          <div class="pkg-divider"></div>
+          <ul class="pkg-features">
+            <li>CBC (Complete Blood Count)</li>
+            <li>Thyroid Profile (T3, T4, TSH)</li>
+            <li>Testosterone Level</li>
+            <li>ESR</li>
+            <li>Cardiac Risk Marker</li>
+            <li>Vitamin B12 · Vitamin D</li>
+            <li>Lipid Profile</li>
+            <li>Diabetes Screening (HbA1C + Fasting Sugar)</li>
+            <li>Cortisol Serum</li>
+          </ul>
+          <a class="btn btn-primary" style="width:100%;justify-content:center" href="#" onclick="showPage('booking')">Book — ₹2,500 (Save ₹500)</a>
+        </div>
+
+        <!-- Stress - Women -->
+        <div class="pkg-card" style="border-color:#fbcfe8">
+          <div class="pkg-badge" style="background:#fdf2f8;color:#9d174d">STRESS IMPACT — FOR WOMEN</div>
+          <div class="pkg-name">Stress Impact Checkup</div>
+          <div style="display:flex;align-items:baseline;gap:8px;margin:8px 0 4px">
+            <div class="pkg-price" style="margin:0;color:#9d174d"><sup>₹</sup>2,500</div>
+            <div style="font-size:13px;color:var(--gray-400);text-decoration:line-through">₹3,000</div>
+            <span style="background:#fce7f3;color:#9d174d;font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px">SAVE ₹500</span>
+          </div>
+          <div class="pkg-per">per person · free home collection</div>
+          <div class="pkg-divider"></div>
+          <ul class="pkg-features">
+            <li>FSH, LH & Prolactin</li>
+            <li>CBC (Complete Blood Count)</li>
+            <li>Thyroid Profile (T3, T4, TSH)</li>
+            <li>ESR</li>
+            <li>Cardiac Risk Marker</li>
+            <li>Vitamin B12 · Vitamin D</li>
+            <li>Lipid Profile</li>
+            <li>Diabetes Screening (HbA1C + Fasting Sugar)</li>
+            <li>Cortisol Serum</li>
+          </ul>
+          <a class="btn" style="width:100%;justify-content:center;background:linear-gradient(135deg,#9d174d,#db2777);color:white" href="#" onclick="showPage('booking')">Book — ₹2,500 (Save ₹500)</a>
+        </div>
+
+        <!-- Smoking + Alcohol -->
+        <div class="pkg-card" style="border-color:#d1d5db">
+          <div class="pkg-badge" style="background:var(--gray-100);color:var(--gray-600)">SMOKING + ALCOHOL IMPACT</div>
+          <div class="pkg-name">Lifestyle Impact Checkup</div>
+          <div style="display:flex;align-items:baseline;gap:8px;margin:8px 0 4px">
+            <div class="pkg-price" style="margin:0;color:var(--gray-800)"><sup>₹</sup>2,500</div>
+            <div style="font-size:13px;color:var(--gray-400);text-decoration:line-through">₹3,000</div>
+            <span style="background:var(--gray-100);color:var(--gray-600);font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px">SAVE ₹500</span>
+          </div>
+          <div class="pkg-per">per person · free home collection</div>
+          <div class="pkg-divider"></div>
+          <ul class="pkg-features">
+            <li>Thyroid Profile (T3, T4, TSH)</li>
+            <li>CBC (Complete Blood Count)</li>
+            <li>ESR (Erythrocyte Sedimentation Rate)</li>
+            <li>KFT with Electrolytes</li>
+            <li>LFT (Liver Function Test)</li>
+            <li>Vitamin B12</li>
+            <li>Amylase · Lipase</li>
+            <li>Vitamin D (25 Hydroxy)</li>
+            <li>Lipid Profile</li>
+            <li>Diabetes Screening (HbA1C + Fasting Sugar)</li>
+          </ul>
+          <a class="btn btn-outline" style="width:100%;justify-content:center" href="#" onclick="showPage('booking')">Book — ₹2,500 (Save ₹500)</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── IMAGING SECTION ── -->
+    <div id="pkg-imaging" style="scroll-margin-top:80px">
+      <div class="section-header" style="text-align:center">
+        <div class="section-tag">At-Center Imaging & Cardiology</div>
+        <h2 class="section-title">Advanced <em>Diagnostic Imaging</em></h2>
+        <p class="section-sub" style="margin:0 auto">ECG, X-Ray, Ultrasound, CD Echo, TMT, CT Scan, MRI — all under one roof with expert reporting.</p>
+      </div>
+
+      <!-- At-Center Services -->
+      <div style="background:linear-gradient(135deg,#0a1f35,#1B4D72);border-radius:20px;padding:36px;margin-bottom:32px;color:white">
+        <div style="text-align:center;margin-bottom:28px">
+          <div class="section-tag" style="color:var(--cyan)">At Center Services</div>
+          <h3 style="font-family:var(--serif);font-size:26px;color:white">Cardiology & Basic Imaging</h3>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px">
+          <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:20px;text-align:center">
+            <div style="font-size:32px;margin-bottom:8px">💓</div>
+            <div style="font-weight:700;font-size:16px;color:white;margin-bottom:4px">ECG</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:12px">Electrocardiogram</div>
+            <div style="font-size:26px;font-weight:700;color:var(--cyan)">₹199</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:20px;text-align:center">
+            <div style="font-size:32px;margin-bottom:8px">🩻</div>
+            <div style="font-weight:700;font-size:16px;color:white;margin-bottom:4px">X-Ray</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:12px">Digital X-Ray</div>
+            <div style="font-size:26px;font-weight:700;color:var(--cyan)">₹349</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:20px;text-align:center">
+            <div style="font-size:32px;margin-bottom:8px">❤️</div>
+            <div style="font-weight:700;font-size:16px;color:white;margin-bottom:4px">CD Echo</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:12px">Echocardiography</div>
+            <div style="font-size:26px;font-weight:700;color:var(--cyan)">₹1,199</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:20px;text-align:center">
+            <div style="font-size:32px;margin-bottom:8px">🏃</div>
+            <div style="font-weight:700;font-size:16px;color:white;margin-bottom:4px">T.M.T</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:12px">Treadmill Test</div>
+            <div style="font-size:26px;font-weight:700;color:var(--cyan)">₹1,199</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advanced Imaging -->
+      <div style="background:var(--gray-50);border-radius:20px;padding:36px;margin-bottom:64px">
+        <div style="text-align:center;margin-bottom:28px">
+          <div class="section-tag">Advanced Imaging</div>
+          <h3 style="font-family:var(--serif);font-size:26px;color:var(--blue)">CT Scan · MRI · Ultrasound</h3>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0;border:1px solid var(--gray-200);border-radius:14px;overflow:hidden;background:white">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 24px;border-bottom:1px solid var(--gray-100)">
+            <div><div style="font-weight:700;font-size:15px;color:var(--gray-800)">🧠 CT Brain</div><div style="font-size:12px;color:var(--gray-500);margin-top:2px">Non-contrast CT of brain</div></div>
+            <div style="font-size:22px;font-weight:700;color:var(--blue)">₹4,499</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 24px;border-bottom:1px solid var(--gray-100)">
+            <div><div style="font-weight:700;font-size:15px;color:var(--gray-800)">🧠 MRI Brain</div><div style="font-size:12px;color:var(--gray-500);margin-top:2px">Full MRI scan of brain</div></div>
+            <div style="font-size:22px;font-weight:700;color:var(--blue)">₹4,999</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 24px;border-bottom:1px solid var(--gray-100)">
+            <div><div style="font-weight:700;font-size:15px;color:var(--gray-800)">☢️ PET CT</div><div style="font-size:12px;color:var(--gray-500);margin-top:2px">Whole body PET CT scan</div></div>
+            <div style="font-size:22px;font-weight:700;color:var(--blue)">₹11,999</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 24px">
+            <div><div style="font-weight:700;font-size:15px;color:var(--gray-800)">🔊 Ultrasound</div><div style="font-size:12px;color:var(--gray-500);margin-top:2px">Abdominal / Pelvic / Other</div></div>
+            <div style="font-size:15px;font-weight:700;color:var(--blue)">Call for Price</div>
+          </div>
+        </div>
+        <p style="font-size:12px;color:var(--gray-400);text-align:center;margin-top:14px">* Other CT/MRI body parts available. Call or WhatsApp for current pricing.</p>
+      </div>
+    </div>
+
+    <!-- ── TPA PANELS ── -->
+    <div style="background:linear-gradient(135deg,var(--green),var(--teal));border-radius:20px;padding:36px;color:white;text-align:center;margin-bottom:32px">
+      <div style="font-size:36px;margin-bottom:12px">🃏</div>
+      <h3 style="font-family:var(--serif);font-size:28px;color:white;margin-bottom:8px">TPA & Insurance Panels</h3>
+      <p style="opacity:0.85;font-size:15px;margin-bottom:24px">Cashless & reimbursement facility available for all major insurance panels.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:24px">
+        <span style="background:rgba(255,255,255,0.15);padding:8px 16px;border-radius:999px;font-size:13px;font-weight:600">Ayushman Card</span>
+        <span style="background:rgba(255,255,255,0.15);padding:8px 16px;border-radius:999px;font-size:13px;font-weight:600">ESIC</span>
+        <span style="background:rgba(255,255,255,0.15);padding:8px 16px;border-radius:999px;font-size:13px;font-weight:600">ECHS</span>
+        <span style="background:rgba(255,255,255,0.15);padding:8px 16px;border-radius:999px;font-size:13px;font-weight:600">CGHS</span>
+        <span style="background:rgba(255,255,255,0.15);padding:8px 16px;border-radius:999px;font-size:13px;font-weight:600">Niva Bupa</span>
+        <span style="background:rgba(255,255,255,0.15);padding:8px 16px;border-radius:999px;font-size:13px;font-weight:600">Aditya Birla</span>
+        <span style="background:rgba(255,255,255,0.15);padding:8px 16px;border-radius:999px;font-size:13px;font-weight:600">Sahara</span>
+        <span style="background:rgba(255,255,255,0.15);padding:8px 16px;border-radius:999px;font-size:13px;font-weight:600">Star Health</span>
+      </div>
+      <p style="opacity:0.7;font-size:13px;margin-bottom:20px">All TPA panels available · Bring your insurance card · Zero hassle reimbursement</p>
+      <a class="btn" style="background:white;color:var(--green);font-weight:700" href="https://wa.me/919518656024?text=I want to check my TPA/insurance coverage at Apex Health" target="_blank">💬 Check Your Coverage</a>
+    </div>
+
+    <p style="text-align:center;font-size:13px;color:var(--gray-400);margin-top:16px">* Prices shown are today's discounted rates · Group bookings (3+ family members) get additional discount · WhatsApp for bulk/corporate packages</p>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- PAGE: AMBULANCE -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-ambulance">
+<section class="ambulance-hero">
+  <div style="position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22><circle cx=%2230%22 cy=%2230%22 r=%221%22 fill=%22rgba(255,255,255,0.08)%22/></svg>');"></div>
+  <div style="position:relative;z-index:1;max-width:700px;margin:0 auto">
+    <div style="font-size:72px;margin-bottom:16px">🚑</div>
+    <div class="section-tag" style="color:#fca5a5" id="t-amb-tag">24/7 Emergency Ambulance</div>
+    <h1 class="section-title" style="color:white" id="t-amb-title">One Call Away<br><em style="color:#fca5a5">When It Matters Most</em></h1>
+    <p style="color:rgba(255,255,255,0.7);font-size:17px;margin-bottom:12px" id="t-amb-sub">Available round the clock, 365 days a year.</p>
+    <div class="big-number"><a href="tel:9518656024">📞 9518656024</a></div>
+    <p style="color:rgba(255,255,255,0.5);font-size:14px;margin-bottom:32px" id="t-amb-tap">Tap to call instantly on mobile</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a class="btn" style="background:#dc2626;color:white;font-size:16px;padding:14px 28px" href="tel:9518656024"><span id="t-amb-call-btn">📞 Call Ambulance Now</span></a>
+      <a class="btn btn-whatsapp btn-lg" href="https://wa.me/919518656024?text=EMERGENCY: I need ambulance immediately" target="_blank"><span id="t-amb-wa-btn">💬 WhatsApp Emergency</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="ambulance-features" style="background:transparent">
+      <div class="amb-feature" style="background:var(--blue-pale);border-color:var(--gray-200)">
+        <div class="amb-icon">📡</div>
+        <div class="amb-title" style="color:var(--blue)" id="t-amb-f1-title">Live GPS Tracking</div>
+        <div class="amb-desc" style="color:var(--gray-600)" id="t-amb-f1-desc">Track your ambulance in real-time from dispatch to your doorstep. Share live location with family.</div>
+      </div>
+      <div class="amb-feature" style="background:var(--blue-pale);border-color:var(--gray-200)">
+        <div class="amb-icon">⏱️</div>
+        <div class="amb-title" style="color:var(--blue)" id="t-amb-f2-title">12-Minute Average ETA</div>
+        <div class="amb-desc" style="color:var(--gray-600)" id="t-amb-f2-desc">Our strategically positioned fleet ensures you're never far from help in your area.</div>
+      </div>
+      <div class="amb-feature" style="background:var(--blue-pale);border-color:var(--gray-200)">
+        <div class="amb-icon">🏥</div>
+        <div class="amb-title" style="color:var(--blue)" id="t-amb-f3-title">Trained Paramedics</div>
+        <div class="amb-desc" style="color:var(--gray-600)" id="t-amb-f3-desc">Every ambulance is staffed with certified paramedics and equipped with life-saving equipment.</div>
+      </div>
+    </div>
+
+    <div style="background:linear-gradient(135deg,#7f1d1d,#dc2626);border-radius:20px;padding:36px;margin-top:40px;color:white;text-align:center">
+      <h3 style="font-family:var(--serif);font-size:26px;margin-bottom:12px" id="t-amb-save-title">Save This Number Right Now</h3>
+      <p style="opacity:0.8;margin-bottom:20px" id="t-amb-save-sub">In an emergency, every second counts. Save our number before you need it.</p>
+      <div style="font-size:36px;font-weight:700;font-family:var(--serif);margin-bottom:20px">📞 9518656024</div>
+      <a class="btn" style="background:white;color:#dc2626;font-weight:700;font-size:16px;padding:13px 28px" href="tel:9518656024"><span id="t-amb-save-btn">Call Now</span></a>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- PAGE: ABOUT -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-about">
+<section style="background:linear-gradient(135deg,#0a1f35,#1B4D72);padding:64px 24px;color:white;text-align:center">
+  <div style="max-width:700px;margin:0 auto">
+    <div class="section-tag" style="color:var(--cyan)" id="t-about-hero-tag">Our Story</div>
+    <h1 class="section-title" style="color:white;margin-bottom:16px" id="t-about-hero-title">Born in Your <em style="color:var(--cyan)">Neighbourhood,</em><br>Built for Your Family</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div>
+        <div class="section-tag" id="t-about-who-tag">Who We Are</div>
+        <h2 class="section-title" style="font-size:32px" id="t-about-who-title">Your Trusted Local<br><em>Health Partner</em></h2>
+        <p style="color:var(--gray-600);line-height:1.8;margin-bottom:20px" id="t-about-p1">Apex Health was founded with a simple belief: every family deserves access to quality healthcare — in their own language, at their own doorstep, at an honest price.</p>
+        <p style="color:var(--gray-600);line-height:1.8;margin-bottom:28px" id="t-about-p2">We're not a corporate chain. We're your neighborhood health partner — staffed with Hindi-speaking professionals who understand your needs, your culture, and your concerns.</p>
+        <div style="background:var(--blue-pale);border-left:4px solid var(--blue);border-radius:4px;padding:20px 24px;margin-bottom:28px">
+          <div style="font-family:var(--serif);font-size:18px;color:var(--blue);font-style:italic" id="t-about-quote">"आपका स्वास्थ्य, हमारी प्राथमिकता"</div>
+          <div style="font-size:13px;color:var(--gray-400);margin-top:6px" id="t-about-quote-sub">Your health, our priority — not just a tagline, but our daily commitment.</div>
+        </div>
+        <div class="cert-badges">
+          <div class="cert-badge">NABL Certified</div>
+          <div class="cert-badge">ISO 9001:2015</div>
+          <div class="cert-badge">5-Star Lab Quality</div>
+          <div class="cert-badge">24/7 Operations</div>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div class="about-main-card">
+          <div style="font-size:48px;margin-bottom:16px">🔬</div>
+          <h3 style="font-family:var(--serif);font-size:22px;color:var(--blue);margin-bottom:12px" id="t-about-lab-title">State-of-the-Art Laboratory</h3>
+          <p style="font-size:14px;color:var(--gray-600);line-height:1.7" id="t-about-lab-desc">Our NABL-accredited lab uses fully automated analyzers ensuring precision, consistency, and reliability in every test result.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px">
+            <div style="text-align:center;background:white;border-radius:12px;padding:16px">
+              <div style="font-size:24px;font-weight:700;color:var(--blue);font-family:var(--serif)">200+</div>
+              <div style="font-size:12px;color:var(--gray-600)" id="t-about-lab-stat1">Tests Available</div>
+            </div>
+            <div style="text-align:center;background:white;border-radius:12px;padding:16px">
+              <div style="font-size:24px;font-weight:700;color:var(--green);font-family:var(--serif)">2hrs</div>
+              <div style="font-size:12px;color:var(--gray-600)" id="t-about-lab-stat2">Report Turnaround</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-float-badge top-right">✅ NABL Accredited</div>
+        <div class="about-float-badge bottom-left">🏅 4.9★ on Google</div>
+      </div>
+    </div>
+
+    <!-- Core Values -->
+    <div style="margin-top:72px">
+      <h3 style="font-family:var(--serif);font-size:28px;color:var(--blue);text-align:center;margin-bottom:40px" id="t-about-val-title">Our Core Values</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-bottom:72px">
+        <div style="background:var(--blue-pale);border-radius:16px;padding:24px;text-align:center;border:1px solid var(--blue-light)">
+          <div style="font-size:32px;margin-bottom:10px">🤝</div>
+          <div style="font-weight:700;font-size:15px;color:var(--blue);margin-bottom:8px" id="t-about-v1-title">Trust First</div>
+          <div style="font-size:13px;color:var(--gray-600)" id="t-about-v1-desc">No hidden charges, real staff photos, honest results. Always.</div>
+        </div>
+        <div style="background:var(--green-light);border-radius:16px;padding:24px;text-align:center;border:1px solid rgba(46,139,87,0.2)">
+          <div style="font-size:32px;margin-bottom:10px">🏘️</div>
+          <div style="font-weight:700;font-size:15px;color:var(--green);margin-bottom:8px" id="t-about-v2-title">Community First</div>
+          <div style="font-size:13px;color:var(--gray-600)" id="t-about-v2-desc">We live in your neighborhood. Your trust is our business.</div>
+        </div>
+        <div style="background:var(--cyan-light);border-radius:16px;padding:24px;text-align:center;border:1px solid rgba(0,188,212,0.2)">
+          <div style="font-size:32px;margin-bottom:10px">⚡</div>
+          <div style="font-weight:700;font-size:15px;color:var(--teal);margin-bottom:8px" id="t-about-v3-title">Speed & Accuracy</div>
+          <div style="font-size:13px;color:var(--gray-600)" id="t-about-v3-desc">Same-day reports without compromising on precision.</div>
+        </div>
+        <div style="background:#f5f3ff;border-radius:16px;padding:24px;text-align:center;border:1px solid rgba(124,58,237,0.15)">
+          <div style="font-size:32px;margin-bottom:10px">🗣️</div>
+          <div style="font-weight:700;font-size:15px;color:#7c3aed;margin-bottom:8px" id="t-about-v4-title">Your Language</div>
+          <div style="font-size:13px;color:var(--gray-600)" id="t-about-v4-desc">Hindi-speaking staff who explain clearly and patiently.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team Section -->
+    <div style="margin-top:72px">
+      <h3 style="font-family:var(--serif);font-size:28px;color:var(--blue);text-align:center;margin-bottom:8px" id="t-team-title">Meet Our Team</h3>
+      <p style="text-align:center;color:var(--gray-600);font-size:15px;margin-bottom:40px" id="t-team-sub">The people who care for you, every single day</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;max-width:700px;margin:0 auto">
+
+        <!-- Ashu Kaushik -->
+        <div style="background:white;border:1.5px solid var(--gray-200);border-radius:20px;padding:32px 24px;text-align:center;box-shadow:0 4px 20px rgba(27,77,114,0.07)">
+          <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal));margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:36px;color:white;font-family:var(--serif);font-weight:700;border:4px solid var(--blue-light)">
+            AK
+          </div>
+          <!-- 👆 Replace the div above with: <img src="photo-ashu.jpg" style="width:90px;height:90px;border-radius:50%;object-fit:cover;margin:0 auto 16px;display:block;border:4px solid var(--blue-light)"> -->
+          <div style="font-weight:700;font-size:17px;color:var(--gray-800);margin-bottom:4px" id="t-team1-name">Ashu Kaushik</div>
+          <div style="font-size:13px;color:var(--blue);font-weight:600;margin-bottom:12px" id="t-team1-role">Founder & Director</div>
+          <div style="font-size:13px;color:var(--gray-600);line-height:1.7" id="t-team1-desc">Dedicated to making quality healthcare accessible to every family in Sonipat and Ganaur at honest prices.</div>
+          <div style="margin-top:16px;display:flex;justify-content:center;gap:10px">
+            <a href="tel:9518656024" style="background:var(--blue-light);color:var(--blue);padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;text-decoration:none">📞 Call</a>
+            <a href="https://wa.me/919518656024" target="_blank" style="background:#dcfce7;color:#166534;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;text-decoration:none">💬 WhatsApp</a>
+          </div>
+        </div>
+
+        <!-- Kuldeep Bhaiya -->
+        <div style="background:white;border:1.5px solid var(--gray-200);border-radius:20px;padding:32px 24px;text-align:center;box-shadow:0 4px 20px rgba(27,77,114,0.07)">
+          <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--teal));margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:36px;color:white;font-family:var(--serif);font-weight:700;border:4px solid var(--green-light)">
+            KB
+          </div>
+          <!-- 👆 Replace the div above with: <img src="photo-kuldeep.jpg" style="width:90px;height:90px;border-radius:50%;object-fit:cover;margin:0 auto 16px;display:block;border:4px solid var(--green-light)"> -->
+          <div style="font-weight:700;font-size:17px;color:var(--gray-800);margin-bottom:4px" id="t-team2-name">Kuldeep</div>
+          <div style="font-size:13px;color:var(--green-mid);font-weight:600;margin-bottom:12px" id="t-team2-role">Operations & Lab</div>
+          <div style="font-size:13px;color:var(--gray-600);line-height:1.7" id="t-team2-desc">Ensuring every sample is handled with precision and every patient receives timely, accurate reports they can trust.</div>
+          <div style="margin-top:16px;display:flex;justify-content:center">
+            <a href="tel:8059663065" style="background:var(--green-light);color:var(--green);padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;text-decoration:none">📞 8059663065</a>
+          </div>
+        </div>
+
+      </div>
+      <p style="text-align:center;font-size:12px;color:var(--gray-400);margin-top:20px" id="t-team-note">Team photos coming soon — West Ram Nagar, Sonipat · Hari Nagar, Ganaur</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- PAGE: BOOKING -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-booking">
+<div class="booking-hero">
+  <div style="max-width:600px;margin:0 auto;text-align:center">
+    <div class="section-tag" style="color:rgba(255,255,255,0.7)" id="t-book-hero-tag">Easy Booking</div>
+    <h1 style="font-family:var(--serif);font-size:38px;color:white;margin-bottom:12px" id="t-book-hero-title">Book Your Health Test</h1>
+    <p style="color:rgba(255,255,255,0.75);font-size:16px" id="t-book-hero-sub">Free home collection · Same-day reports · No hidden charges</p>
+  </div>
+</div>
+
+<section style="padding:0 24px 80px;background:var(--gray-50)">
+  <div style="max-width:720px;margin:0 auto">
+    <div class="booking-form-wrap" id="bookingFormWrap">
+      <div class="step-indicator" id="stepIndicator">
+        <div class="step-dot active" id="step1dot">1</div>
+        <div class="step-line"></div>
+        <div class="step-dot" id="step2dot">2</div>
+        <div class="step-line"></div>
+        <div class="step-dot" id="step3dot">3</div>
+      </div>
+
+      <!-- Step 1 -->
+      <div id="formStep1">
+        <h3 style="font-family:var(--serif);font-size:22px;color:var(--blue);margin-bottom:8px" id="t-book-step1-title">Select Service or Package</h3>
+        <p style="font-size:13px;color:var(--gray-400);margin-bottom:20px" id="t-book-step1-sub">Free home collection included on all packages above ₹299</p>
+
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gray-400);margin-bottom:10px" id="t-book-grp1">Health Checkup Packages</p>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+          <label style="display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid var(--gray-200);border-radius:12px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="resetBorder(this)">
+            <input type="radio" name="service" value="Apex Basic Care Package ₹799" style="accent-color:var(--blue);width:18px;height:18px">
+            <div><div style="font-weight:600;font-size:14px">Apex Basic Care Package</div><div style="font-size:12px;color:var(--gray-400)">Lipid, KFT, LFT, CBC, Urine, Sugar, Calcium</div></div>
+            <div style="margin-left:auto;font-weight:700;color:var(--blue);font-size:15px;white-space:nowrap">₹799</div>
+          </label>
+          <label style="display:flex;align-items:center;gap:14px;padding:14px 16px;border:2px solid var(--blue);border-radius:12px;cursor:pointer;background:var(--blue-pale)">
+            <input type="radio" name="service" value="Apex Essential Wellness Package ₹999" style="accent-color:var(--blue);width:18px;height:18px" checked>
+            <div><div style="font-weight:600;font-size:14px">Apex Essential Wellness ⭐ Popular</div><div style="font-size:12px;color:var(--gray-400)">Lipid, Thyroid, KFT, LFT, CBC, Urine, Sugar, Calcium</div></div>
+            <div style="margin-left:auto;font-weight:700;color:var(--blue);font-size:15px;white-space:nowrap">₹999</div>
+          </label>
+          <label style="display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid var(--gray-200);border-radius:12px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="resetBorder(this)">
+            <input type="radio" name="service" value="Apex Advance Health Package ₹1999" style="accent-color:var(--blue);width:18px;height:18px">
+            <div><div style="font-weight:600;font-size:14px">Apex Advance Health Package</div><div style="font-size:12px;color:var(--gray-400)">+ HbA1C added to Essential Wellness</div></div>
+            <div style="margin-left:auto;font-weight:700;color:var(--blue);font-size:15px;white-space:nowrap">₹1,999</div>
+          </label>
+          <label style="display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid var(--gray-200);border-radius:12px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="resetBorder(this)">
+            <input type="radio" name="service" value="Apex Super Screening Package ₹1499" style="accent-color:var(--blue);width:18px;height:18px">
+            <div><div style="font-weight:600;font-size:14px">Apex Super Screening Package</div><div style="font-size:12px;color:var(--gray-400)">+ Vitamin D, B12, Iron Profile</div></div>
+            <div style="margin-left:auto;font-weight:700;color:var(--blue);font-size:15px;white-space:nowrap">₹1,499</div>
+          </label>
+          <label style="display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid var(--gray-200);border-radius:12px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="resetBorder(this)">
+            <input type="radio" name="service" value="Apex Full Body Package ₹1999" style="accent-color:var(--blue);width:18px;height:18px">
+            <div><div style="font-weight:600;font-size:14px">Apex Full Body Package</div><div style="font-size:12px;color:var(--gray-400)">+ RA Factor, CRP, Testosterone — most complete</div></div>
+            <div style="margin-left:auto;font-weight:700;color:var(--blue);font-size:15px;white-space:nowrap">₹1,999</div>
+          </label>
+        </div>
+
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gray-400);margin-bottom:10px" id="t-book-grp2">Diabetes Packages</p>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+          <label style="display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid #fda4af;border-radius:12px;cursor:pointer;transition:all 0.2s;background:#fff9fa" onmouseover="this.style.borderColor='#e11d48'" onmouseout="resetBorder(this)">
+            <input type="radio" name="service" value="Sugar One Diabetes Package ₹299" style="accent-color:#e11d48;width:18px;height:18px">
+            <div><div style="font-weight:600;font-size:14px">Sugar One</div><div style="font-size:12px;color:var(--gray-400)">Blood Sugar F/PP, HbA1C, Diet Counselling</div></div>
+            <div style="margin-left:auto;font-weight:700;color:#e11d48;font-size:15px;white-space:nowrap">₹299</div>
+          </label>
+          <label style="display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid #fda4af;border-radius:12px;cursor:pointer;transition:all 0.2s;background:#fff9fa" onmouseover="this.style.borderColor='#e11d48'" onmouseout="resetBorder(this)">
+            <input type="radio" name="service" value="Sugar Screen Diabetes Package ₹499" style="accent-color:#e11d48;width:18px;height:18px">
+            <div><div style="font-weight:600;font-size:14px">Sugar Screen</div><div style="font-size:12px;color:var(--gray-400)">Blood Sugar, HbA1C, Lipid Profile, Diet Counselling</div></div>
+            <div style="margin-left:auto;font-weight:700;color:#e11d48;font-size:15px;white-space:nowrap">₹499</div>
+          </label>
+        </div>
+
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gray-400);margin-bottom:10px" id="t-book-grp3">Fever Profiles</p>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+          <label style="display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid #fed7aa;border-radius:12px;cursor:pointer;background:#fffbf5" onmouseover="this.style.borderColor='#ea580c'" onmouseout="resetBorder(this)">
+            <input type="radio" name="service" value="Fever Basic Care Package ₹499" style="accent-color:#ea580c;width:18px;height:18px">
+            <div><div style="font-weight:600;font-size:14px">Fever Basic Care</div><div style="font-size:12px;color:var(--gray-400)">Urine, CBC, Widal, ESR, Malaria Antigen</div></div>
+            <div style="margin-left:auto;font-weight:700;color:#ea580c;font-size:15px;white-space:nowrap">₹499</div>
+          </label>
+          <label style="display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid #fed7aa;border-radius:12px;cursor:pointer;background:#fffbf5" onmouseover="this.style.borderColor='#ea580c'" onmouseout="resetBorder(this)">
+            <input type="radio" name="service" value="Fever Essential Package ₹599" style="accent-color:#ea580c;width:18px;height:18px">
+            <div><div style="font-weight:600;font-size:14px">Fever Essential Package</div><div style="font-size:12px;color:var(--gray-400)">CBC, Widal, SGOT, SGPT, Bilirubin</div></div>
+            <div style="margin-left:auto;font-weight:700;color:#ea580c;font-size:15px;white-space:nowrap">₹599</div>
+          </label>
+          <label style="display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid #fed7aa;border-radius:12px;cursor:pointer;background:#fffbf5" onmouseover="this.style.borderColor='#ea580c'" onmouseout="resetBorder(this)">
+            <input type="radio" name="service" value="Fever Advance Package ₹699" style="accent-color:#ea580c;width:18px;height:18px">
+            <div><div style="font-weight:600;font-size:14px">Fever Advance Package</div><div style="font-size:12px;color:var(--gray-400)">CBC, Widal, ESR, Malaria, CRP</div></div>
+            <div style="margin-left:auto;font-weight:700;color:#ea580c;font-size:15px;white-space:nowrap">₹699</div>
+          </label>
+          <label style="display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid #fed7aa;border-radius:12px;cursor:pointer;background:#fffbf5" onmouseover="this.style.borderColor='#ea580c'" onmouseout="resetBorder(this)">
+            <input type="radio" name="service" value="Fever Complete Plus Package ₹1199" style="accent-color:#ea580c;width:18px;height:18px">
+            <div><div style="font-weight:600;font-size:14px">Fever Complete Plus</div><div style="font-size:12px;color:var(--gray-400)">CBC, ESR, Malaria, SGPT, SGOT, CRP, Typhi Dot, Dengue NS1</div></div>
+            <div style="margin-left:auto;font-weight:700;color:#ea580c;font-size:15px;white-space:nowrap">₹1,199</div>
+          </label>
+        </div>
+
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gray-400);margin-bottom:10px" id="t-book-grp4">Individual Tests / Other Services</p>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px">
+          <label style="display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid var(--gray-200);border-radius:12px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="resetBorder(this)">
+            <input type="radio" name="service" value="Individual Lab Test" style="accent-color:var(--blue);width:18px;height:18px">
+            <div><div style="font-weight:600;font-size:14px">Individual Lab Test</div><div style="font-size:12px;color:var(--gray-400)">CBC, Thyroid, Sugar, Lipid, Vitamin D/B12, etc.</div></div>
+            <div style="margin-left:auto;font-weight:700;color:var(--green);font-size:15px;white-space:nowrap">From ₹149</div>
+          </label>
+          <label style="display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid var(--gray-200);border-radius:12px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="resetBorder(this)">
+            <input type="radio" name="service" value="Stress Impact Checkup ₹2500" style="accent-color:var(--blue);width:18px;height:18px">
+            <div><div style="font-weight:600;font-size:14px">Stress Impact Checkup (Men / Women)</div><div style="font-size:12px;color:var(--gray-400)">Hormones, Cortisol, Thyroid, Cardiac Markers</div></div>
+            <div style="margin-left:auto;text-align:right"><div style="font-weight:700;color:var(--blue);font-size:15px">₹2,500</div><div style="font-size:10px;color:var(--gray-400);text-decoration:line-through">₹3,000</div></div>
+          </label>
+          <label style="display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid var(--gray-200);border-radius:12px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="resetBorder(this)">
+            <input type="radio" name="service" value="ECG ₹199" style="accent-color:var(--blue);width:18px;height:18px">
+            <div><div style="font-weight:600;font-size:14px">ECG (At Center)</div><div style="font-size:12px;color:var(--gray-400)">Electrocardiogram — visit center</div></div>
+            <div style="margin-left:auto;font-weight:700;color:var(--blue);font-size:15px;white-space:nowrap">₹199</div>
+          </label>
+          <label style="display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid var(--gray-200);border-radius:12px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='#7c3aed'" onmouseout="resetBorder(this)">
+            <input type="radio" name="service" value="Doctor Consultation" style="accent-color:#7c3aed;width:18px;height:18px">
+            <div><div style="font-weight:600;font-size:14px">Doctor Consultation</div><div style="font-size:12px;color:var(--gray-400)">In-clinic or tele-consultation, Hindi available</div></div>
+            <div style="margin-left:auto;font-weight:700;color:#7c3aed;font-size:15px;white-space:nowrap">₹299</div>
+          </label>
+          <label style="display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid var(--gray-200);border-radius:12px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='#b45309'" onmouseout="resetBorder(this)">
+            <input type="radio" name="service" value="Medical Home Service (Injection / Drip / Dressing)" style="accent-color:#b45309;width:18px;height:18px">
+            <div><div style="font-weight:600;font-size:14px">Medical Home Service</div><div style="font-size:12px;color:var(--gray-400)">Injection, Drip, Dressing, Catheter at home</div></div>
+            <div style="margin-left:auto;font-weight:700;color:#b45309;font-size:15px;white-space:nowrap">Call</div>
+          </label>
+        </div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:16px;padding:14px" onclick="nextStep(2)"><span id="t-book-continue">Continue →</span></button>
+      </div>
+
+      <!-- Step 2 -->
+      <div id="formStep2" style="display:none">
+        <h3 style="font-family:var(--serif);font-size:22px;color:var(--blue);margin-bottom:24px" id="t-book-step2-title">Your Details</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" id="t-book-name-lbl">Full Name *</label>
+            <input class="form-input" id="fName" type="text" placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label class="form-label" id="t-book-phone-lbl">WhatsApp Number *</label>
+            <input class="form-input" id="fPhone" type="tel" placeholder="+91 9xxxxxxxxx">
+          </div>
+          <div class="form-group">
+            <label class="form-label" id="t-book-date-lbl">Preferred Date *</label>
+            <input class="form-input" id="fDate" type="date">
+          </div>
+          <div class="form-group">
+            <label class="form-label" id="t-book-time-lbl">Preferred Time</label>
+            <select class="form-select" id="fTime">
+              <option>7:00 AM – 9:00 AM</option>
+              <option>9:00 AM – 11:00 AM</option>
+              <option>11:00 AM – 1:00 PM</option>
+              <option>3:00 PM – 5:00 PM</option>
+              <option>5:00 PM – 7:00 PM</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label class="form-label" id="t-book-addr-lbl">Home Address for Collection</label>
+            <textarea class="form-textarea" id="fAddr" placeholder="Flat no., Building, Street, Area, Pincode"></textarea>
+          </div>
+          <div class="form-group full">
+            <label class="form-label" id="t-book-notes-lbl">Special Instructions (optional)</label>
+            <input class="form-input" id="fNotes" type="text" placeholder="E.g. Fasting test, elderly patient, access instructions...">
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:24px">
+          <button class="btn btn-outline" onclick="nextStep(1)"><span id="t-book-back">← Back</span></button>
+          <button class="btn btn-primary" style="flex:1;justify-content:center;font-size:16px;padding:14px" onclick="nextStep(3)"><span id="t-book-confirm">Review Booking →</span></button>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div id="formStep3" style="display:none">
+        <h3 style="font-family:var(--serif);font-size:22px;color:var(--blue);margin-bottom:24px" id="t-book-step3-title">Confirm & Send</h3>
+        <p style="color:var(--text-secondary);font-size:14px;margin-bottom:0" id="t-book-step3-sub">Review your booking details and confirm via WhatsApp.</p>
+        <div id="bookingSummary" style="background:var(--gray-50);border-radius:12px;padding:24px;margin-bottom:24px;border:1.5px solid var(--gray-200)"></div>
+        <div style="background:var(--green-light);border-radius:10px;padding:16px;font-size:14px;color:var(--green);margin-bottom:24px">
+          ✅ <strong>Free home collection included</strong> — our phlebotomist will arrive at your chosen time. No clinic visit needed.
+        </div>
+        <div style="display:flex;gap:12px">
+          <button class="btn btn-outline" onclick="nextStep(2)"><span >← Edit</span></button>
+          <button class="btn btn-whatsapp" style="flex:1;justify-content:center;font-size:16px;padding:14px" onclick="submitBooking()"><span id="t-book-submit">💬 Confirm on WhatsApp →</span></button>
+        </div>
+        <div id="bookingSuccess" style="display:none" class="success-msg">
+          <div class="icon">🎉</div>
+          <div class="text">
+            <div class="title" id="t-book-success-title">Booking Request Sent! 🎉</div>
+            <div class="sub" id="t-book-success-sub">Our team will confirm your appointment within 30 minutes.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:24px;font-size:14px;color:var(--gray-400)">
+      Prefer to call? <a href="tel:9518656024" style="color:var(--blue);font-weight:600">📞 9518656024</a> · Or <a href="https://wa.me/919518656024" target="_blank" style="color:#25d366;font-weight:600">WhatsApp us</a>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- PAGE: CONTACT -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-contact">
+<section style="background:linear-gradient(135deg,#0a1f35,#1B4D72);padding:64px 24px;color:white;text-align:center">
+  <div style="max-width:600px;margin:0 auto">
+    <div class="section-tag" style="color:var(--cyan)" id="t-contact-hero-tag">Two Locations</div>
+    <h1 class="section-title" style="color:white;margin-bottom:12px" id="t-contact-hero-title">Find Us Near <em style="color:var(--cyan)">You</em></h1>
+    <p style="color:rgba(255,255,255,0.65)" id="t-contact-hero-sub">Call, WhatsApp, or drop by — we speak your language.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div>
+        <h3 style="font-family:var(--serif);font-size:24px;color:var(--blue);margin-bottom:28px" id="t-reach-title">Reach Us</h3>
+        <div class="contact-info-item">
+          <div class="contact-icon" style="background:#fef2f2">📞</div>
+          <div><div class="contact-label" id="t-phone-lbl">Phone (Call & WhatsApp)</div>
+            <div class="contact-value"><a href="tel:9518656024">9518656024</a></div>
+            <div class="contact-value" style="margin-top:4px"><a href="tel:8059663065" style="font-size:14px;color:var(--gray-600)">8059663065</a></div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon" style="background:#dcfce7">💬</div>
+          <div><div class="contact-label" id="t-wa-lbl">WhatsApp</div><div class="contact-value"><a href="https://wa.me/919518656024" target="_blank">+91 95186 56024</a></div></div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon" style="background:var(--blue-pale)">📍</div>
+          <div>
+            <div class="contact-label" id="t-addr1-lbl">Main Branch — Sonipat</div>
+            <div class="contact-value" id="t-addr1-name">Apex Health Diagnostics</div>
+            <div style="font-size:14px;color:var(--gray-600);margin-top:2px;line-height:1.6" id="t-addr1-detail">West Ram Nagar, 3 Nlko Wali Gali<br>Near Hanuman Mandir, Sonipat</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon" style="background:var(--green-light)">📍</div>
+          <div>
+            <div class="contact-label" id="t-addr2-lbl">Branch 2 — Ganaur</div>
+            <div class="contact-value" id="t-addr2-name">Apex Health Diagnostics</div>
+            <div style="font-size:14px;color:var(--gray-600);margin-top:2px;line-height:1.6" id="t-addr2-detail">Hari Nagar, Ganaur<br>Sonipat District, Haryana</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon" style="background:var(--cyan-light)">✉️</div>
+          <div><div class="contact-label" id="t-email-lbl">Email</div><div class="contact-value"><a href="mailto:apexhealthclinic2702@gmail.com">apexhealthclinic2702@gmail.com</a></div></div>
+        </div>
+
+        <h4 style="font-size:14px;font-weight:700;color:var(--blue);margin-top:32px;margin-bottom:16px" id="t-hours-title">Working Hours</h4>
+        <div class="hours-grid">
+          <div class="hours-row"><span class="day" id="t-hours-row1-day">Monday – Saturday</span><span class="time" id="t-hours-row1-time">7:00 AM – 8:00 PM</span></div>
+          <div class="hours-row"><span class="day" id="t-hours-row2-day">Sunday</span><span class="time" id="t-hours-row2-time">8:00 AM – 2:00 PM</span></div>
+        </div>
+        <div style="background:#fef2f2;border-radius:10px;padding:14px 18px;margin-top:16px;font-size:14px;color:var(--red);font-weight:600">
+          <span id="t-amb-note">🚑 Ambulance: 24/7 · 365 days</span> — <a href="tel:9518656024" style="color:var(--red)">9518656024</a>
+        </div>
+
+        <!-- Two branch map buttons -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px">
+          <a href="https://maps.google.com/?q=West+Ram+Nagar+Sonipat+Haryana" target="_blank" style="display:flex;align-items:center;gap:8px;padding:14px;background:var(--blue-pale);border:1px solid var(--gray-200);border-radius:12px;text-decoration:none;color:var(--blue);font-size:13px;font-weight:600">
+            <span style="font-size:20px">🗺️</span>
+            <div><div><span id="t-map1-lbl">Sonipat Branch</span></div><div style="font-size:11px;color:var(--gray-400);font-weight:400"><span id="t-map1-sub">Open in Maps →</span></div></div>
+          </a>
+          <a href="https://maps.google.com/?q=Hari+Nagar+Ganaur+Sonipat+Haryana" target="_blank" style="display:flex;align-items:center;gap:8px;padding:14px;background:var(--green-light);border:1px solid var(--gray-200);border-radius:12px;text-decoration:none;color:var(--green);font-size:13px;font-weight:600">
+            <span style="font-size:20px">🗺️</span>
+            <div><div><span id="t-map2-lbl">Ganaur Branch</span></div><div style="font-size:11px;color:var(--gray-400);font-weight:400" id="t-map2-sub">Open in Maps →</div></div>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div style="background:var(--white);border-radius:20px;padding:36px;border:1.5px solid var(--gray-200);box-shadow:var(--shadow)">
+          <h3 style="font-family:var(--serif);font-size:22px;color:var(--blue);margin-bottom:24px" id="t-form-title">Send a Message</h3>
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div class="form-group">
+              <label class="form-label" id="t-form-name-lbl">Your Name</label>
+              <input class="form-input" id="cName" type="text" placeholder="Full name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" id="t-form-phone-lbl">WhatsApp Number</label>
+              <input class="form-input" id="cPhone" type="tel" placeholder="+91 9xxxxxxxxx">
+            </div>
+            <div class="form-group">
+              <label class="form-label" id="t-form-branch-lbl">Branch</label>
+              <select class="form-select">
+                <option>Sonipat — West Ram Nagar</option>
+                <option>Ganaur — Hari Nagar</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" id="t-form-help-lbl">How Can We Help?</label>
+              <select class="form-select">
+                <option>Book a Test</option>
+                <option>Ambulance Enquiry</option>
+                <option>Medicine Delivery</option>
+                <option>Report Query</option>
+                <option>Doctor Consultation</option>
+                <option>Equipment on Rent</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" id="t-form-msg-lbl">Message</label>
+              <textarea class="form-textarea" id="cMsg" placeholder="Tell us how we can help you..."></textarea>
+            </div>
+            <button class="btn btn-whatsapp" style="width:100%;justify-content:center;font-size:15px;padding:14px" onclick="sendContactWhatsApp()"><span id="t-form-wa-btn">💬 Send via WhatsApp →</span></button>
+            <p style="text-align:center;font-size:12px;color:var(--gray-400)" id="t-form-reply">We respond within 30 minutes during working hours</p>
+          </div>
+        </div>
+
+        <div style="margin-top:24px;display:flex;gap:12px">
+          <a class="btn btn-primary" style="flex:1;justify-content:center" href="tel:9518656024"><span id="t-contact-call-btn">📞 Call Now</span></a>
+          <a class="btn btn-green" style="flex:1;justify-content:center" href="#" onclick="showPage('booking')"><span id="t-contact-book-btn">📋 Book Test</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- Footer (shown on all pages) -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon">A</div>
+          <div class="logo-text">
+            <div class="brand">Apex Health</div>
+            <div class="tagline">आपका स्वास्थ्य, हमारी प्राथमिकता</div>
+          </div>
+        </div>
+        <p id="t-footer-desc">Your trusted neighborhood health partner. NABL-certified lab, free home collection, 24/7 ambulance. Two branches — Sonipat & Ganaur.</p>
+        <div style="margin-top:16px;font-size:12px;color:rgba(255,255,255,0.4);line-height:1.8">
+          <div>📍 West Ram Nagar, Near Hanuman Mandir, Sonipat</div>
+          <div>📍 Hari Nagar, Ganaur, Sonipat District</div>
+          <div style="margin-top:6px">📞 9518656024 &nbsp;|&nbsp; 8059663065</div>
+          <div>✉️ apexhealthclinic2702@gmail.com</div>
+        </div>
+        <div class="footer-socials" style="margin-top:20px">
+          <a class="social-btn" href="#">f</a>
+          <a class="social-btn" href="#">in</a>
+          <a class="social-btn" href="#">▶</a>
+          <a class="social-btn" href="https://wa.me/919518656024" target="_blank">W</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 id="t-footer-svc-title">Services</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('services')">Lab Tests</a></li>
+          <li><a href="#" onclick="showPage('ambulance')">24/7 Ambulance</a></li>
+          <li><a href="#" onclick="showPage('services')">Medicine Delivery</a></li>
+          <li><a href="#" onclick="showPage('services')">Physiotherapy</a></li>
+          <li><a href="#" onclick="showPage('services')">Equipment on Rent</a></li>
+          <li><a href="#" onclick="showPage('booking')">Home Collection</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 id="t-footer-pkg-title">Packages</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('packages')">Basic Care ₹799</a></li>
+          <li><a href="#" onclick="showPage('packages')">Essential Wellness ₹999</a></li>
+          <li><a href="#" onclick="showPage('packages')">Full Body ₹1,999</a></li>
+          <li><a href="#" onclick="showPage('packages')">Fever Profiles</a></li>
+          <li><a href="#" onclick="showPage('packages')">Diabetes Packages</a></li>
+          <li><a href="#" onclick="showPage('booking')">Book Now</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 id="t-footer-contact-title">Contact</h4>
+        <ul>
+          <li><a href="tel:9518656024">📞 9518656024</a></li>
+          <li><a href="tel:8059663065">📞 8059663065</a></li>
+          <li><a href="https://wa.me/919518656024" target="_blank">💬 WhatsApp</a></li>
+          <li><a href="mailto:apexhealthclinic2702@gmail.com">✉️ Email Us</a></li>
+          <li><a href="#" onclick="showPage('contact')">📍 Our Locations</a></li>
+          <li><a href="#" onclick="showPage('about')">About Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div><span id="t-footer-copy">© 2026 Apex Health. All rights reserved. NABL Certified Laboratory · Sonipat & Ganaur, Haryana</span></div>
+      <div><span id="t-footer-made">Made with ❤️ for your neighbourhood</span></div>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<div class="whatsapp-float">
+  <div class="wa-tooltip" id="t-wa-tooltip">Chat with us on WhatsApp</div>
+  <a class="wa-btn" href="https://wa.me/919518656024?text=Namaste! I want to know more about Apex Health services." target="_blank">
+    <div class="wa-pulse-ring"></div>
+    💬
+  </a>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// APEX HEALTH — COMPLETE ID-BASED TRANSLATION ENGINE
+// Every visible text string has a unique id="t-hero-badge" in HTML.
+// T[lang][KEY] = the text for that language.
+// ═══════════════════════════════════════════════════════════════════
+const T = {
+  en: {
+    'emerg': '🚨 24/7 Emergency Ambulance — Sonipat & Ganaur',
+    'nav-home':'Home','nav-services':'Services','nav-packages':'Packages',
+    'nav-ambulance':'Ambulance','nav-about':'About Us','nav-contact':'Contact',
+    'nav-cta-call':'📞 Call Now','nav-cta-book':'Book Test',
+    'menu-title':'Menu','m-home':'🏠 Home','m-services':'🔬 Services',
+    'm-packages':'📦 Health Packages','m-ambulance':'🚑 24/7 Ambulance',
+    'm-about':'👨‍⚕️ About Us','m-contact':'📍 Contact','m-book':'Book Test Now',
+    'hero-badge':'Trusted by 2,800+ Families — Sonipat & Ganaur',
+    'hero-h1':'Your Health, <span class="accent">Delivered</span><br>to Your Door',
+    'hero-sub':'Lab tests, medicine delivery, doctor consultations & 24/7 ambulance — all from one trusted neighborhood health partner. No clinic visit needed.',
+    'hero-cta1':'📋 Book Free Home Collection','hero-cta2':'💬 WhatsApp Us',
+    'hero-lbl1':'Families Served','hero-lbl2':'Google Rating','hero-lbl3':'Avg Ambulance ETA',
+    'fc-lbl1':'Most Popular Package','fc-val1':'Essential Wellness — ₹999',
+    'fc-lbl2':'Free Service','fc-val2':'Home Sample Collection',
+    'fc-lbl3':'24/7 Available','fc-val3':'Ambulance with Live Tracking',
+    'fc-lbl4':'Same Day','fc-val4':'Reports via WhatsApp',
+    'h-svc-tag':'Our Services',
+    'h-svc-title':'Everything Your Family Needs,<br><em>Under One Roof</em>',
+    'h-svc-sub':'From routine blood tests to emergency ambulance — a complete health ecosystem for your neighbourhood.',
+    'sc1-badge':'Lab Tests','sc1-title':'Blood & Urine Tests',
+    'sc1-desc':'CBC, Sugar, Lipid, LFT, KFT, Thyroid, Vitamin panels and 200+ more parameters.','sc1-arrow':'Learn more →',
+    'sc2-badge':'Emergency','sc2-title':'24/7 Ambulance',
+    'sc2-desc':'GPS-tracked ambulance dispatched in minutes. Call once, we handle the rest.','sc2-arrow':'Learn more →',
+    'sc3-badge':'Delivery','sc3-title':'Medicine Delivery',
+    'sc3-desc':'Prescribed medicines delivered to your doorstep. Same-day delivery available.','sc3-arrow':'Learn more →',
+    'sc4-badge':'Consultation','sc4-title':'Doctor Consultation',
+    'sc4-desc':'In-clinic and tele-consultation with experienced doctors. Hindi-speaking staff.','sc4-arrow':'Book Now →',
+    'sc5-badge':'FREE Service','sc5-title':'Home Sample Collection',
+    'sc5-desc':'Our trained phlebotomist visits your home. No clinic visit needed. Completely free.','sc5-arrow':'Book Now →',
+    'sc6-badge':'At Home','sc6-title':'Physiotherapy',
+    'sc6-desc':'Pain relief, recovery & rehabilitation by trained physiotherapists at your home.','sc6-arrow':'Learn more →',
+    'sc7-badge':'Rental','sc7-title':'Medical Equipment',
+    'sc7-desc':'Hospital bed, oxygen concentrator, BP monitor, suction machine — doorstep delivery.','sc7-arrow':'Learn more →',
+    'sc8-badge':'Wellness','sc8-title':'Diseases Diet Charts',
+    'sc8-desc':'Personalized diet plans for diabetes, cardiac, kidney disease and weight management.','sc8-arrow':'Learn more →',
+    'trust-tag':'Why Trust Us','trust-title':'Numbers That Speak for <em>Themselves</em>',
+    'trust-lbl1':'Families Served','trust-lbl2':'Google Rating','trust-lbl3':'Tests Available',
+    'trust-lbl4':'Avg Ambulance ETA','trust-lbl5':'Certified Laboratory',
+    'offer-title':'🏠 Free Sample Collection from Your Home',
+    'offer-sub':'No clinic visit needed — our team comes to you. Same-day reports via WhatsApp.',
+    'offer-btn':'Book Free Collection →',
+    'hiw-tag':'Simple Process','hiw-title':'Book a Test in <em>3 Minutes</em>',
+    'hiw-sub':'No paperwork, no waiting rooms. Just four easy steps and we come to you.',
+    'step1-title':'Choose Test or Package','step1-desc':'Select from 200+ tests or affordable packages from ₹799.',
+    'step2-title':'Book in 3 Taps','step2-desc':'Name, phone, preferred time — that\'s it. WhatsApp confirmation instant.',
+    'step3-title':'We Come to You','step3-desc':'Our trained professional arrives at your chosen time. Free home visit.',
+    'step4-title':'Get Reports on WhatsApp','step4-desc':'Digital reports same day, right to your WhatsApp. Share with any doctor.',
+    'hiw-cta':'Start Booking Now →',
+    'h-pkg-tag':'Health Packages','h-pkg-title':'Transparent Pricing,<br><em>No Hidden Costs</em>',
+    'h-pkg-sub':'Three carefully curated packages for every family\'s need. What you see is what you pay.',
+    'hp1-badge':'STARTER','hp1-name':'Basic Wellness','hp1-per':'per person · free home collection',
+    'hp1-f1':'CBC — Complete Blood Count','hp1-f2':'Blood Sugar (Fasting & PP)',
+    'hp1-f3':'Lipid Profile','hp1-f4':'Same-Day WhatsApp Report','hp1-f5':'Free Home Collection','hp1-btn':'Book This Package',
+    'hp2-badge':'⭐ MOST POPULAR','hp2-name':'Advanced Care','hp2-per':'per person · free home collection',
+    'hp2-f1':'CBC','hp2-f2':'Liver Function Test (LFT)','hp2-f3':'Kidney Function Test (KFT)',
+    'hp2-f4':'Thyroid Profile (T3/T4/TSH)','hp2-f5':'Same-Day Report + Free Collection','hp2-btn':'Book This Package',
+    'hp3-badge':'COMPREHENSIVE','hp3-name':'Premium Full Body','hp3-per':'per person · free home collection',
+    'hp3-f1':'60+ Parameters','hp3-f2':'Diabetes, Heart, Liver, Kidney',
+    'hp3-f3':'Thyroid + Vitamin D & B12','hp3-f4':'Iron Studies + CBC','hp3-f5':'Doctor Consultation Included','hp3-btn':'Book This Package',
+    'h-pkg-note':'* All packages include free home collection • Same-day report • WhatsApp delivery',
+    'test-tag':'Patient Stories','test-title':'What Your <em>Neighbors</em> Say',
+    'test-sub':'Real patients from your city, real experiences. We let their words speak for us.',
+    'test-reviews-btn':'See All 200+ Google Reviews →',
+    'cta-tag':'Get Started Today','cta-title':'Ready to Take Care of Your <em>Health?</em>',
+    'cta-sub':'Book your free home collection in under 3 minutes. No clinic visit, no waiting, no hidden charges.',
+    'cta-btn1':'📋 Book Free Home Collection','cta-btn3':'📞 Call Now',
+    'svc-hero-tag':'All Services','svc-hero-title':'Complete Health Services<br><em>For Your Whole Family</em>',
+    'svc-hero-sub':'One call or tap away from everything your family needs — from routine tests to emergencies.',
+    'svc-lab-tag':'🔬 Lab Tests','svc-lab-title':'Accurate Diagnostics,<br><em>NABL Certified</em>',
+    'svc-lab-desc':'Our NABL-certified laboratory uses state-of-the-art equipment to deliver precise results. Every test is double-checked before being sent to you.',
+    'svc-lab-list':'200+ Tests Available Including:','svc-lab-free':'✅ Free home collection on all tests above ₹299',
+    'svc-lab-btn':'Book Lab Test →',
+    'svc-home-sig':'Our Signature Service','svc-home-title':'Free Home Sample Collection',
+    'svc-home-desc':'अब लैब टेस्ट के लिए क्लिनिक आने की ज़रूरत नहीं। Our trained phlebotomist visits your home at your scheduled time — completely free, no minimum order.',
+    'svc-home-btn':'Schedule Free Collection →',
+    'svc-more-tag':'More Services','svc-more-title':'Beyond Diagnostics',
+    'svc-doc-badge':'Consultation','svc-doc-title':'Doctor Consultation',
+    'svc-doc-desc':'In-clinic and tele-consultation. Hindi-speaking doctors who take time to explain.','svc-doc-arrow':'Book Appointment →',
+    'svc-med-badge':'Delivery','svc-med-title':'Medicine Delivery',
+    'svc-med-desc':'Upload prescription on WhatsApp and get medicines delivered. Same day.','svc-med-arrow':'Order Medicines →',
+    'svc-amb-badge':'Emergency','svc-amb-title':'24/7 Ambulance',
+    'svc-amb-desc':'GPS-tracked ambulance available round the clock. Average response time 12 minutes.','svc-amb-arrow':'View Ambulance Service →',
+    'svc-phy-badge':'At Home','svc-phy-title':'Physiotherapy',
+    'svc-phy-desc':'Pain relief, recovery & rehabilitation by trained physiotherapists — at your home.','svc-phy-arrow':'Book Session →',
+    'svc-diet-badge':'Wellness','svc-diet-title':'Disease Diet Charts',
+    'svc-diet-desc':'Personalized diet plans for diabetes, heart, kidney, and weight management.','svc-diet-arrow':'Get Diet Plan →',
+    'equip-tag':'Equipment on Rent','equip-title':'Medical Equipment <em>at Your Doorstep</em>',
+    'equip-sub':'Affordable rental of quality medical equipment — delivered and set up at your home.',
+    'equip-wa-btn':'💬 WhatsApp for Rental Pricing',
+    'home-svc-tag':'Medical Service at Home','home-svc-title':'Clinical Care, <em>Now at Home</em>',
+    'home-svc-sub':'Trained medical staff visit your home for injections, IV drips, dressings, catheter care, and more.',
+    'home-svc-btn':'Book Home Medical Service',
+    'amb-tag':'24/7 Emergency Ambulance','amb-title':'One Call Away<br><em>When It Matters Most</em>',
+    'amb-sub':'Available round the clock, 365 days a year.','amb-tap':'Tap to call instantly on mobile',
+    'amb-call-btn':'📞 Call Ambulance Now','amb-wa-btn':'💬 WhatsApp Emergency',
+    'amb-f1-title':'Live GPS Tracking','amb-f1-desc':'Track your ambulance in real-time from dispatch to your doorstep. Share live location with family.',
+    'amb-f2-title':'12-Minute Average ETA','amb-f2-desc':'Our strategically positioned fleet ensures you\'re never far from help in your area.',
+    'amb-f3-title':'Trained Paramedics','amb-f3-desc':'Every ambulance is staffed with certified paramedics and equipped with life-saving equipment.',
+    'amb-save-title':'Save This Number Right Now','amb-save-sub':'In an emergency, every second counts. Save our number before you need it.','amb-save-btn':'Call Now',
+    'about-hero-tag':'Our Story','about-hero-title':'Born in Your <em>Neighbourhood,</em><br>Built for Your Family',
+    'about-who-tag':'Who We Are','about-who-title':'Your Trusted Local<br><em>Health Partner</em>',
+    'about-p1':'Apex Health was founded with a simple belief: every family deserves access to quality healthcare — in their own language, at their own doorstep, at an honest price.',
+    'about-p2':'We\'re not a corporate chain. We\'re your neighborhood health partner — staffed with Hindi-speaking professionals who understand your needs, your culture, and your concerns.',
+    'about-quote':'"आपका स्वास्थ्य, हमारी प्राथमिकता"',
+    'about-quote-sub':'Your health, our priority — not just a tagline, but our daily commitment.',
+    'about-lab-title':'State-of-the-Art Laboratory',
+    'about-lab-desc':'Our NABL-accredited lab uses fully automated analyzers ensuring precision, consistency, and reliability in every test result.',
+    'about-lab-stat1':'Tests Available','about-lab-stat2':'Report Turnaround',
+    'about-val-title':'Our Core Values',
+    'about-v1-title':'Trust First','about-v1-desc':'No hidden charges, real staff photos, honest results. Always.',
+    'about-v2-title':'Community First','about-v2-desc':'We live in your neighborhood. Your trust is our business.',
+    'about-v3-title':'Speed & Accuracy','about-v3-desc':'Same-day reports without compromising on precision.',
+    'about-v4-title':'Your Language','about-v4-desc':'Hindi-speaking staff who explain clearly and patiently.',
+    'team-title':'Meet Our Team','team-sub':'The people who care for you, every single day',
+    'team1-name':'Ashu Kaushik','team1-role':'Founder & Director',
+    'team1-desc':'Dedicated to making quality healthcare accessible to every family in Sonipat and Ganaur at honest prices.',
+    'team2-name':'Kuldeep','team2-role':'Operations & Lab',
+    'team2-desc':'Ensuring every sample is handled with precision and every patient receives timely, accurate reports they can trust.',
+    'team-note':'Team photos coming soon — West Ram Nagar, Sonipat · Hari Nagar, Ganaur',
+    'contact-hero-tag':'Two Locations','contact-hero-tag':'Two Locations','contact-hero-title':'Find Us Near <em>You</em>','contact-hero-sub':'Call, WhatsApp, or drop by — we speak your language.',
+    'reach-title':'Reach Us','phone-lbl':'Phone (Call & WhatsApp)','wa-lbl':'WhatsApp',
+    'addr1-lbl':'Main Branch — Sonipat','addr1-name':'Apex Health Diagnostics',
+    'addr1-detail':'West Ram Nagar, 3 Nlko Wali Gali<br>Near Hanuman Mandir, Sonipat',
+    'addr2-lbl':'Branch 2 — Ganaur','addr2-name':'Apex Health Diagnostics',
+    'addr2-detail':'Hari Nagar, Ganaur<br>Sonipat District, Haryana',
+    'email-lbl':'Email','hours-title':'Working Hours',
+    'hours-row1-day':'Monday – Saturday','hours-row1-time':'7:00 AM – 8:00 PM',
+    'hours-row2-day':'Sunday','hours-row2-time':'8:00 AM – 2:00 PM',
+    'amb-note':'🚑 Ambulance: 24/7 · 365 days',
+    'map1-lbl':'Sonipat Branch','map1-sub':'Open in Maps →','map2-lbl':'Ganaur Branch','map2-sub':'Open in Maps →',
+    'form-title':'Send a Message','form-name-lbl':'Your Name','form-phone-lbl':'WhatsApp Number',
+    'form-branch-lbl':'Branch','form-help-lbl':'How Can We Help?','form-msg-lbl':'Message',
+    'form-wa-btn':'💬 Send via WhatsApp →','form-reply':'We respond within 30 minutes during working hours',
+    'contact-call-btn':'📞 Call Now','contact-book-btn':'📋 Book Test',
+    'book-hero-tag':'Easy Booking','book-hero-title':'Book Your Health Test',
+    'book-hero-sub':'Free home collection · Same-day reports · No hidden charges',
+    'book-step1-title':'Select Service or Package',
+    'book-step1-sub':'Free home collection included on all packages above ₹299',
+    'book-grp1':'Health Checkup Packages','book-grp2':'Diabetes Packages',
+    'book-grp3':'Fever Profiles','book-grp4':'Individual Tests / Other Services',
+    'book-continue':'Continue →','book-step2-title':'Your Details',
+    'book-name-lbl':'Full Name *','book-phone-lbl':'WhatsApp Number *',
+    'book-date-lbl':'Preferred Date *','book-time-lbl':'Preferred Time',
+    'book-addr-lbl':'Home Address for Collection','book-notes-lbl':'Special Instructions (optional)',
+    'book-back':'← Back','book-confirm':'Review Booking →',
+    'book-step3-title':'Confirm & Send',
+    'book-step3-sub':'Review your booking details and confirm via WhatsApp.',
+    'book-submit':'💬 Confirm on WhatsApp →',
+    'book-success-title':'Booking Request Sent! 🎉',
+    'book-success-sub':'Our team will confirm your appointment within 30 minutes.',
+    'footer-desc':'Your trusted neighborhood health partner. NABL-certified lab, free home collection, 24/7 ambulance. Two branches — Sonipat & Ganaur.',
+    'footer-svc-title':'Services','footer-pkg-title':'Packages','footer-contact-title':'Contact',
+    'footer-copy':'© 2026 Apex Health. All rights reserved. NABL Certified Laboratory · Sonipat & Ganaur, Haryana',
+    'footer-made':'Made with ❤️ for your neighbourhood',
+    'wa-tooltip':'Chat with us on WhatsApp',
+  },
+  hi: {
+    'emerg': '🚨 24/7 आपातकालीन एंबुलेंस — सोनीपत & गनौर',
+    'nav-home':'होम','nav-services':'सेवाएं','nav-packages':'पैकेज',
+    'nav-ambulance':'एंबुलेंस','nav-about':'हमारे बारे में','nav-contact':'संपर्क',
+    'nav-cta-call':'📞 अभी कॉल करें','nav-cta-book':'टेस्ट बुक करें',
+    'menu-title':'मेनू','m-home':'🏠 होम','m-services':'🔬 सेवाएं',
+    'm-packages':'📦 स्वास्थ्य पैकेज','m-ambulance':'🚑 24/7 एंबुलेंस सेवा',
+    'm-about':'👨‍⚕️ हमारे बारे में','m-contact':'📍 संपर्क','m-book':'अभी टेस्ट बुक करें',
+    'hero-badge':'2,800+ परिवारों का विश्वास — सोनीपत & गनौर',
+    'hero-h1':'आपकी सेहत, <span class="accent">पहुंचे</span><br>आपके दरवाजे तक',
+    'hero-sub':'लैब टेस्ट, दवाई डिलीवरी, डॉक्टर परामर्श और 24/7 एंबुलेंस — एक भरोसेमंद पड़ोस के स्वास्थ्य साथी से। क्लिनिक जाने की ज़रूरत नहीं।',
+    'hero-cta1':'📋 फ्री होम कलेक्शन बुक करें','hero-cta2':'💬 WhatsApp करें',
+    'hero-lbl1':'परिवार सेवित','hero-lbl2':'Google रेटिंग','hero-lbl3':'औसत एंबुलेंस समय',
+    'fc-lbl1':'सबसे लोकप्रिय पैकेज','fc-val1':'Essential Wellness — ₹999',
+    'fc-lbl2':'मुफ्त सेवा','fc-val2':'घर पर सैंपल कलेक्शन',
+    'fc-lbl3':'24/7 उपलब्ध','fc-val3':'लाइव ट्रैकिंग के साथ एंबुलेंस',
+    'fc-lbl4':'उसी दिन','fc-val4':'WhatsApp पर रिपोर्ट',
+    'h-svc-tag':'हमारी सेवाएं',
+    'h-svc-title':'परिवार की हर ज़रूरत,<br><em>एक छत के नीचे</em>',
+    'h-svc-sub':'नियमित रक्त परीक्षण से आपातकालीन एंबुलेंस तक — आपके पड़ोस के लिए पूरा स्वास्थ्य तंत्र।',
+    'sc1-badge':'लैब टेस्ट','sc1-title':'रक्त और मूत्र परीक्षण',
+    'sc1-desc':'CBC, शुगर, लिपिड, LFT, KFT, थायरॉइड, विटामिन पैनल और 200+ और परीक्षण।','sc1-arrow':'और जानें →',
+    'sc2-badge':'आपातकाल','sc2-title':'24/7 एंबुलेंस',
+    'sc2-desc':'GPS-ट्रैक्ड एंबुलेंस मिनटों में। एक बार कॉल करें, बाकी हम संभालते हैं।','sc2-arrow':'और जानें →',
+    'sc3-badge':'डिलीवरी','sc3-title':'दवाई डिलीवरी',
+    'sc3-desc':'डॉक्टर की पर्ची पर दवाइयां आपके घर तक। उसी दिन डिलीवरी उपलब्ध।','sc3-arrow':'और जानें →',
+    'sc4-badge':'परामर्श','sc4-title':'डॉक्टर परामर्श',
+    'sc4-desc':'क्लिनिक और टेली-परामर्श। हिंदी बोलने वाले अनुभवी डॉक्टर।','sc4-arrow':'अभी बुक करें →',
+    'sc5-badge':'मुफ्त सेवा','sc5-title':'घर पर सैंपल कलेक्शन',
+    'sc5-desc':'हमारे प्रशिक्षित फ्लेबोटोमिस्ट आपके घर आते हैं। पूरी तरह मुफ्त।','sc5-arrow':'अभी बुक करें →',
+    'sc6-badge':'घर पर','sc6-title':'फिजियोथेरेपी',
+    'sc6-desc':'प्रशिक्षित फिजियोथेरेपिस्ट द्वारा दर्द निवारण और पुनर्वास — आपके घर पर।','sc6-arrow':'और जानें →',
+    'sc7-badge':'किराया','sc7-title':'चिकित्सा उपकरण',
+    'sc7-desc':'हॉस्पिटल बेड, ऑक्सीजन कंसेंट्रेटर, BP मॉनिटर — दरवाजे पर डिलीवरी।','sc7-arrow':'और जानें →',
+    'sc8-badge':'वेलनेस','sc8-title':'बीमारी डाइट चार्ट',
+    'sc8-desc':'मधुमेह, हृदय रोग, किडनी और वजन प्रबंधन के लिए व्यक्तिगत आहार योजना।','sc8-arrow':'और जानें →',
+    'trust-tag':'हम पर भरोसा क्यों','trust-title':'संख्याएं जो <em>खुद बोलती हैं</em>',
+    'trust-lbl1':'परिवार सेवित','trust-lbl2':'Google रेटिंग','trust-lbl3':'टेस्ट उपलब्ध',
+    'trust-lbl4':'औसत एंबुलेंस समय','trust-lbl5':'प्रमाणित प्रयोगशाला',
+    'offer-title':'🏠 फ्री सैंपल कलेक्शन आपके घर से',
+    'offer-sub':'क्लिनिक आने की ज़रूरत नहीं — हमारी टीम आपके पास आती है। WhatsApp पर उसी दिन रिपोर्ट।',
+    'offer-btn':'फ्री कलेक्शन बुक करें →',
+    'hiw-tag':'आसान प्रक्रिया','hiw-title':'3 मिनट में <em>टेस्ट बुक करें</em>',
+    'hiw-sub':'कोई कागजी काम नहीं, कोई वेटिंग रूम नहीं। बस चार आसान कदम और हम आपके पास आ जाते हैं।',
+    'step1-title':'टेस्ट या पैकेज चुनें','step1-desc':'₹799 से शुरू होने वाले 200+ टेस्ट या किफायती पारिवारिक पैकेज में से चुनें।',
+    'step2-title':'3 टैप में बुक करें','step2-desc':'नाम, फोन और पसंदीदा समय — बस इतना। WhatsApp पुष्टि तुरंत मिलती है।',
+    'step3-title':'हम आपके पास आते हैं','step3-desc':'हमारा प्रशिक्षित पेशेवर आपके चुने समय पर पहुंचता है। पूरी तरह मुफ्त होम विजिट।',
+    'step4-title':'WhatsApp पर रिपोर्ट पाएं','step4-desc':'डिजिटल रिपोर्ट उसी दिन, सीधे आपके WhatsApp पर। किसी भी डॉक्टर को शेयर करें।',
+    'hiw-cta':'अभी बुकिंग शुरू करें →',
+    'h-pkg-tag':'स्वास्थ्य पैकेज','h-pkg-title':'पारदर्शी मूल्य,<br><em>कोई छुपा शुल्क नहीं</em>',
+    'h-pkg-sub':'हर परिवार की ज़रूरत के लिए तीन सावधानी से चुने गए पैकेज। जो दिखे, वही दाम।',
+    'hp1-badge':'स्टार्टर','hp1-name':'बेसिक वेलनेस','hp1-per':'प्रति व्यक्ति · फ्री होम कलेक्शन',
+    'hp1-f1':'CBC — पूर्ण रक्त गणना','hp1-f2':'ब्लड शुगर (फास्टिंग और PP)',
+    'hp1-f3':'लिपिड प्रोफाइल','hp1-f4':'उसी दिन WhatsApp रिपोर्ट','hp1-f5':'फ्री होम कलेक्शन','hp1-btn':'यह पैकेज बुक करें',
+    'hp2-badge':'⭐ सबसे लोकप्रिय','hp2-name':'एडवांस्ड केयर','hp2-per':'प्रति व्यक्ति · फ्री होम कलेक्शन',
+    'hp2-f1':'CBC','hp2-f2':'लीवर फंक्शन टेस्ट (LFT)','hp2-f3':'किडनी फंक्शन टेस्ट (KFT)',
+    'hp2-f4':'थायरॉइड प्रोफाइल (T3/T4/TSH)','hp2-f5':'उसी दिन रिपोर्ट + फ्री कलेक्शन','hp2-btn':'यह पैकेज बुक करें',
+    'hp3-badge':'व्यापक','hp3-name':'प्रीमियम फुल बॉडी','hp3-per':'प्रति व्यक्ति · फ्री होम कलेक्शन',
+    'hp3-f1':'60+ पैरामीटर','hp3-f2':'मधुमेह, हृदय, लीवर, किडनी',
+    'hp3-f3':'थायरॉइड + विटामिन D और B12','hp3-f4':'आयरन स्टडीज + CBC','hp3-f5':'डॉक्टर परामर्श शामिल','hp3-btn':'यह पैकेज बुक करें',
+    'h-pkg-note':'* सभी पैकेज में फ्री होम कलेक्शन • उसी दिन रिपोर्ट डिलीवरी • WhatsApp रिपोर्ट शामिल है',
+    'test-tag':'मरीजों के अनुभव','test-title':'आपके <em>पड़ोसी</em> क्या कहते हैं',
+    'test-sub':'आपके शहर के असली मरीज, असली अनुभव। हम उनकी बातें बोलने देते हैं।',
+    'test-reviews-btn':'सभी 200+ Google समीक्षाएं देखें →',
+    'cta-tag':'आज ही शुरू करें','cta-title':'अपनी <em>सेहत</em> का ख्याल रखने के लिए तैयार हैं?',
+    'cta-sub':'3 मिनट से कम में फ्री होम कलेक्शन बुक करें। कोई क्लिनिक विजिट, कोई प्रतीक्षा, कोई छुपा शुल्क नहीं।',
+    'cta-btn1':'📋 फ्री होम कलेक्शन बुक करें','cta-btn3':'📞 अभी कॉल करें',
+    'svc-hero-tag':'सभी सेवाएं','svc-hero-title':'पूरी स्वास्थ्य सेवाएं<br><em>पूरे परिवार के लिए</em>',
+    'svc-hero-sub':'नियमित टेस्ट से आपातकाल तक — परिवार की हर ज़रूरत एक कॉल या टैप से।',
+    'svc-lab-tag':'🔬 लैब टेस्ट','svc-lab-title':'सटीक डायग्नोस्टिक्स,<br><em>NABL प्रमाणित</em>',
+    'svc-lab-desc':'हमारी NABL-प्रमाणित प्रयोगशाला अत्याधुनिक उपकरणों का उपयोग करती है। हर टेस्ट आप तक पहुंचने से पहले दोबारा जांचा जाता है।',
+    'svc-lab-list':'200+ टेस्ट उपलब्ध, जिनमें शामिल हैं:','svc-lab-free':'✅ ₹299 से ऊपर के सभी टेस्ट पर फ्री होम कलेक्शन',
+    'svc-lab-btn':'लैब टेस्ट बुक करें →',
+    'svc-home-sig':'हमारी प्रमुख सेवा','svc-home-title':'फ्री घर पर सैंपल कलेक्शन',
+    'svc-home-desc':'अब लैब टेस्ट के लिए क्लिनिक आने की ज़रूरत नहीं। हमारा प्रशिक्षित फ्लेबोटोमिस्ट आपके निर्धारित समय पर घर आता है — पूरी तरह मुफ्त।',
+    'svc-home-btn':'फ्री कलेक्शन शेड्यूल करें →',
+    'svc-more-tag':'और सेवाएं','svc-more-title':'डायग्नोस्टिक्स से परे',
+    'svc-doc-badge':'परामर्श','svc-doc-title':'डॉक्टर परामर्श',
+    'svc-doc-desc':'क्लिनिक और टेली-परामर्श। हिंदी बोलने वाले डॉक्टर।','svc-doc-arrow':'अपॉइंटमेंट बुक करें →',
+    'svc-med-badge':'डिलीवरी','svc-med-title':'दवाई डिलीवरी',
+    'svc-med-desc':'WhatsApp पर पर्ची अपलोड करें और दवाइयां घर पर पाएं। उसी दिन डिलीवरी।','svc-med-arrow':'दवाई ऑर्डर करें →',
+    'svc-amb-badge':'आपातकाल','svc-amb-title':'24/7 एंबुलेंस',
+    'svc-amb-desc':'GPS-ट्रैक्ड एंबुलेंस हर समय उपलब्ध। औसत प्रतिक्रिया समय 12 मिनट।','svc-amb-arrow':'एंबुलेंस सेवा देखें →',
+    'svc-phy-badge':'घर पर','svc-phy-title':'फिजियोथेरेपी',
+    'svc-phy-desc':'प्रशिक्षित फिजियोथेरेपिस्ट द्वारा दर्द निवारण और पुनर्वास — आपके घर पर।','svc-phy-arrow':'सेशन बुक करें →',
+    'svc-diet-badge':'वेलनेस','svc-diet-title':'बीमारी डाइट चार्ट',
+    'svc-diet-desc':'मधुमेह, हृदय रोग, किडनी और वजन प्रबंधन के लिए व्यक्तिगत आहार योजना।','svc-diet-arrow':'डाइट प्लान पाएं →',
+    'equip-tag':'किराए पर उपकरण','equip-title':'चिकित्सा उपकरण <em>आपके दरवाजे पर</em>',
+    'equip-sub':'गुणवत्ता वाले चिकित्सा उपकरणों का किफायती किराया — आपके घर पर डिलीवरी और सेटअप।',
+    'equip-wa-btn':'💬 किराए की कीमत के लिए WhatsApp करें',
+    'home-svc-tag':'घर पर चिकित्सा सेवा','home-svc-title':'क्लिनिकल देखभाल, <em>अब घर पर</em>',
+    'home-svc-sub':'प्रशिक्षित चिकित्सा कर्मचारी इंजेक्शन, IV ड्रिप, ड्रेसिंग, कैथेटर देखभाल के लिए घर आते हैं।',
+    'home-svc-btn':'होम मेडिकल सेवा बुक करें',
+    'amb-tag':'24/7 आपातकालीन एंबुलेंस','amb-title':'एक कॉल की दूरी पर<br><em>जब सबसे ज़रूरी हो</em>',
+    'amb-sub':'साल के 365 दिन, चौबीसों घंटे उपलब्ध।','amb-tap':'मोबाइल पर तुरंत कॉल करने के लिए टैप करें',
+    'amb-call-btn':'📞 अभी एंबुलेंस बुलाएं','amb-wa-btn':'💬 WhatsApp आपातकाल',
+    'amb-f1-title':'लाइव GPS ट्रैकिंग','amb-f1-desc':'डिस्पैच से आपके दरवाजे तक एंबुलेंस को रियल-टाइम में ट्रैक करें। परिवार के साथ लाइव लोकेशन शेयर करें।',
+    'amb-f2-title':'12 मिनट औसत ETA','amb-f2-desc':'हमारे रणनीतिक रूप से तैनात वाहन यह सुनिश्चित करते हैं कि आपके क्षेत्र में मदद हमेशा करीब हो।',
+    'amb-f3-title':'प्रशिक्षित पैरामेडिक्स','amb-f3-desc':'हर एंबुलेंस में प्रमाणित पैरामेडिक्स और जीवन रक्षक उपकरण होते हैं।',
+    'amb-save-title':'अभी यह नंबर सेव करें','amb-save-sub':'आपातकाल में हर सेकंड मायने रखता है। ज़रूरत पड़ने से पहले हमारा नंबर सेव करें।','amb-save-btn':'अभी कॉल करें',
+    'about-hero-tag':'हमारी कहानी','about-hero-title':'आपके <em>पड़ोस में</em> जन्मे,<br>आपके परिवार के लिए बने',
+    'about-who-tag':'हम कौन हैं','about-who-title':'आपका विश्वसनीय स्थानीय<br><em>स्वास्थ्य साथी</em>',
+    'about-p1':'Apex Health की स्थापना एक सरल विश्वास के साथ हुई: हर परिवार को गुणवत्तापूर्ण स्वास्थ्य सेवा मिलनी चाहिए — अपनी भाषा में, अपने दरवाजे पर, ईमानदार कीमत पर।',
+    'about-p2':'हम कोई कॉर्पोरेट चेन नहीं हैं। हम आपके पड़ोस के स्वास्थ्य साथी हैं — हिंदी बोलने वाले पेशेवरों के साथ जो आपकी ज़रूरतें, संस्कृति और चिंताएं समझते हैं।',
+    'about-quote':'"आपका स्वास्थ्य, हमारी प्राथमिकता"',
+    'about-quote-sub':'आपका स्वास्थ्य, हमारी प्राथमिकता — सिर्फ एक नारा नहीं, हमारी रोज़मर्रा की प्रतिबद्धता।',
+    'about-lab-title':'अत्याधुनिक प्रयोगशाला',
+    'about-lab-desc':'हमारी NABL-मान्यता प्राप्त लैब पूरी तरह स्वचालित विश्लेषकों का उपयोग करती है जो हर टेस्ट परिणाम में सटीकता और विश्वसनीयता सुनिश्चित करती है।',
+    'about-lab-stat1':'टेस्ट उपलब्ध','about-lab-stat2':'रिपोर्ट टर्नअराउंड',
+    'about-val-title':'हमारे मूल मूल्य',
+    'about-v1-title':'पहले विश्वास','about-v1-desc':'कोई छुपा शुल्क नहीं, असली स्टाफ फोटो, ईमानदार परिणाम। हमेशा।',
+    'about-v2-title':'समुदाय पहले','about-v2-desc':'हम आपके पड़ोस में रहते हैं। आपका विश्वास हमारा व्यवसाय है।',
+    'about-v3-title':'गति और सटीकता','about-v3-desc':'सटीकता से समझौता किए बिना उसी दिन की रिपोर्ट।',
+    'about-v4-title':'आपकी भाषा में','about-v4-desc':'हिंदी बोलने वाला स्टाफ जो स्पष्ट और धैर्य से समझाता है।',
+    'team-title':'हमारी टीम से मिलें','team-sub':'वे लोग जो हर दिन आपकी परवाह करते हैं',
+    'team1-name':'आशु कौशिक','team1-role':'संस्थापक और निदेशक',
+    'team1-desc':'सोनीपत और गनौर के हर परिवार को ईमानदार कीमत पर गुणवत्तापूर्ण स्वास्थ्य सेवा सुलभ कराने के लिए समर्पित।',
+    'team2-name':'कुलदीप','team2-role':'संचालन और लैब',
+    'team2-desc':'यह सुनिश्चित करना कि हर सैंपल की सटीकता से देखभाल हो और हर मरीज को समय पर विश्वसनीय रिपोर्ट मिले।',
+    'team-note':'टीम फोटो जल्द आ रहे हैं — वेस्ट राम नगर, सोनीपत · हरि नगर, गनौर',
+    'contact-hero-tag':'दो स्थान','contact-hero-title':'हमें <em>अपने नजदीक</em> खोजें','contact-hero-sub':'कॉल करें, WhatsApp करें, या आएं — हम आपकी भाषा बोलते हैं.',
+    'reach-title':'हम तक पहुंचें','phone-lbl':'फोन (कॉल और WhatsApp)','wa-lbl':'WhatsApp',
+    'addr1-lbl':'मुख्य शाखा — सोनीपत','addr1-name':'Apex Health Diagnostics',
+    'addr1-detail':'वेस्ट राम नगर, 3 नलको वाली गली<br>हनुमान मंदिर के पास, सोनीपत',
+    'addr2-lbl':'शाखा 2 — गनौर','addr2-name':'Apex Health Diagnostics',
+    'addr2-detail':'हरि नगर, गनौर<br>सोनीपत जिला, हरियाणा',
+    'email-lbl':'ईमेल','hours-title':'काम के घंटे',
+    'hours-row1-day':'सोमवार – शनिवार','hours-row1-time':'सुबह 7:00 – शाम 8:00',
+    'hours-row2-day':'रविवार','hours-row2-time':'सुबह 8:00 – दोपहर 2:00',
+    'amb-note':'🚑 एंबुलेंस: 24/7 · साल के 365 दिन',
+    'map1-lbl':'सोनीपत शाखा','map1-sub':'Maps में खोलें →','map2-lbl':'गनौर शाखा','map2-sub':'Maps में खोलें →',
+    'form-title':'संदेश भेजें','form-name-lbl':'आपका नाम','form-phone-lbl':'WhatsApp नंबर',
+    'form-branch-lbl':'शाखा','form-help-lbl':'हम कैसे मदद कर सकते हैं?','form-msg-lbl':'संदेश',
+    'form-wa-btn':'💬 WhatsApp के जरिए भेजें →','form-reply':'काम के घंटों में 30 मिनट के भीतर जवाब',
+    'contact-call-btn':'📞 अभी कॉल करें','contact-book-btn':'📋 टेस्ट बुक करें',
+    'book-hero-tag':'आसान बुकिंग','book-hero-title':'अपना स्वास्थ्य टेस्ट बुक करें',
+    'book-hero-sub':'फ्री होम कलेक्शन · उसी दिन रिपोर्ट · कोई छुपा शुल्क नहीं',
+    'book-step1-title':'सेवा या पैकेज चुनें',
+    'book-step1-sub':'₹299 से ऊपर के सभी पैकेज में फ्री होम कलेक्शन शामिल है',
+    'book-grp1':'स्वास्थ्य जांच पैकेज','book-grp2':'मधुमेह पैकेज',
+    'book-grp3':'बुखार प्रोफाइल','book-grp4':'व्यक्तिगत टेस्ट / अन्य सेवाएं',
+    'book-continue':'आगे बढ़ें →','book-step2-title':'आपका विवरण',
+    'book-name-lbl':'पूरा नाम *','book-phone-lbl':'WhatsApp नंबर *',
+    'book-date-lbl':'पसंदीदा तारीख *','book-time-lbl':'पसंदीदा समय',
+    'book-addr-lbl':'कलेक्शन के लिए घर का पता','book-notes-lbl':'विशेष निर्देश (वैकल्पिक)',
+    'book-back':'← वापस','book-confirm':'बुकिंग की समीक्षा करें →',
+    'book-step3-title':'पुष्टि करें और भेजें',
+    'book-step3-sub':'अपनी बुकिंग जानकारी की समीक्षा करें और WhatsApp के जरिए पुष्टि करें।',
+    'book-submit':'💬 WhatsApp पर पुष्टि करें →',
+    'book-success-title':'बुकिंग अनुरोध भेज दिया! 🎉',
+    'book-success-sub':'हमारी टीम 30 मिनट के भीतर आपकी अपॉइंटमेंट की पुष्टि करेगी।',
+    'footer-desc':'आपका विश्वसनीय पड़ोसी स्वास्थ्य साथी। NABL-प्रमाणित लैब, फ्री होम कलेक्शन, 24/7 एंबुलेंस। दो शाखाएं — सोनीपत और गनौर।',
+    'footer-svc-title':'सेवाएं','footer-pkg-title':'पैकेज','footer-contact-title':'संपर्क',
+    'footer-copy':'© 2026 Apex Health. सर्वाधिकार सुरक्षित। NABL प्रमाणित प्रयोगशाला · सोनीपत और गनौर, हरियाणा',
+    'footer-made':'आपके पड़ोस के लिए ❤️ से बनाया गया',
+    'wa-tooltip':'हमसे WhatsApp पर बात करें',
+  }
+};
+
+// ─────────────────────────────────────────
+// CORE ENGINE — sets innerHTML by id
+// ─────────────────────────────────────────
+let currentLang = localStorage.getItem('apexLang') || 'en';
+let currentTheme = localStorage.getItem('apexTheme') || 'light';
+
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('apexLang', lang);
+  const dict = T[lang];
+  Object.keys(dict).forEach(key => {
+    const el = document.getElementById('t-' + key);
+    if (el) el.innerHTML = dict[key];
+  });
+  // Placeholders (inputs/textareas)
+  const placeholders = {
+    'book-name-ph': 'fName', 'book-phone-ph': 'fPhone',
+    'book-addr-ph': 'fAddr', 'book-notes-ph': 'fNotes',
+    'form-name-ph': 'cName', 'form-phone-ph': 'cPhone', 'form-msg-ph': 'cMsg'
+  };
+  const phText = {
+    en: { 'book-name-ph':'Your name','book-phone-ph':'+91 9xxxxxxxxx','book-addr-ph':'Flat no., Building, Street, Area, Pincode','book-notes-ph':'E.g. Fasting test, elderly patient...','form-name-ph':'Full name','form-phone-ph':'+91 9xxxxxxxxx','form-msg-ph':'Tell us how we can help you...' },
+    hi: { 'book-name-ph':'आपका नाम','book-phone-ph':'+91 9xxxxxxxxx','book-addr-ph':'फ्लैट नंबर, बिल्डिंग, गली, क्षेत्र, पिनकोड','book-notes-ph':'जैसे: फास्टिंग टेस्ट, बुजुर्ग मरीज...','form-name-ph':'पूरा नाम','form-phone-ph':'+91 9xxxxxxxxx','form-msg-ph':'बताएं हम कैसे मदद कर सकते हैं...' }
+  };
+  Object.keys(placeholders).forEach(key => {
+    const el = document.getElementById(placeholders[key]);
+    if (el && phText[lang] && phText[lang][key]) el.placeholder = phText[lang][key];
+  });
+  // Toggle button active states
+  ['langEN','langHI','mobileLangEN','mobileLangHI'].forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) btn.classList.toggle('active', (lang==='en'&&id.includes('EN'))||(lang==='hi'&&id.includes('HI')));
+  });
+  document.documentElement.lang = lang;
+  document.title = lang === 'hi' ? 'Apex Health | आपका स्वास्थ्य, हमारी प्राथमिकता' : 'Apex Health | Your Health, Our Priority';
+}
+function setLang(lang) { applyLang(lang); }
+
+// ─────────────────────────────────────────
+// THEME
+// ─────────────────────────────────────────
+function applyTheme(theme) {
+  currentTheme = theme;
+  localStorage.setItem('apexTheme', theme);
+  document.documentElement.setAttribute('data-theme', theme);
+  document.querySelectorAll('.theme-toggle').forEach(b => b.textContent = theme==='dark'?'🌙':'☀️');
+}
+function toggleTheme() { applyTheme(currentTheme==='light'?'dark':'light'); }
+
+// ─────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  applyTheme(currentTheme);
+  applyLang(currentLang);
+});
+
+// ─────────────────────────────────────────
+// NAVIGATION
+// ─────────────────────────────────────────
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const navEl = document.getElementById('nav-' + name);
+  if (navEl) navEl.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+function closeMobileMenu(e) {
+  if (!e || e.target === document.getElementById('mobileMenu'))
+    document.getElementById('mobileMenu').classList.remove('open');
+}
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// ─────────────────────────────────────────
+// BOOKING
+// ─────────────────────────────────────────
+let currentStep = 1;
+function nextStep(step) {
+  if (step===2) { const s=document.querySelector('input[name="service"]:checked'); if(!s){alert('Please select a service.');return;} }
+  if (step===3) {
+    const name=document.getElementById('fName').value.trim();
+    const phone=document.getElementById('fPhone').value.trim();
+    if(!name||!phone){alert('Please enter your name and WhatsApp number.');return;}
+    const service=document.querySelector('input[name="service"]:checked');
+    const date=document.getElementById('fDate').value;
+    const addr=document.getElementById('fAddr').value.trim();
+    const time=document.getElementById('fTime').value;
+    document.getElementById('bookingSummary').innerHTML=`<div style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid var(--border)"><span style="color:var(--text-muted);font-size:14px">Service</span><span style="font-weight:600;color:var(--text-primary)">${service?service.value:''}</span></div>
+      <div style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid var(--border)"><span style="color:var(--text-muted);font-size:14px">Patient</span><span style="font-weight:600;color:var(--text-primary)">${name}</span></div>
+      <div style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid var(--border)"><span style="color:var(--text-muted);font-size:14px">WhatsApp</span><span style="font-weight:600;color:var(--text-primary)">${phone}</span></div>
+      ${date?`<div style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid var(--border)"><span style="color:var(--text-muted);font-size:14px">Date</span><span style="font-weight:600;color:var(--text-primary)">${date} · ${time}</span></div>`:''}
+      ${addr?`<div style="display:flex;justify-content:space-between"><span style="color:var(--text-muted);font-size:14px">Address</span><span style="font-weight:600;text-align:right;max-width:60%;color:var(--text-primary)">${addr}</span></div>`:''}
+    </div>`;
+  }
+  document.getElementById('formStep'+currentStep).style.display='none';
+  document.getElementById('formStep'+step).style.display='block';
+  [1,2,3].forEach(d=>{
+    const dot=document.getElementById('step'+d+'dot');
+    if(d<step){dot.className='step-dot done';dot.textContent='✓';}
+    else if(d===step){dot.className='step-dot active';dot.textContent=d;}
+    else{dot.className='step-dot';dot.textContent=d;}
+  });
+  currentStep=step;
+}
+function submitBooking() {
+  const name=document.getElementById('fName').value.trim();
+  const phone=document.getElementById('fPhone').value.trim();
+  const service=document.querySelector('input[name="service"]:checked');
+  const date=document.getElementById('fDate').value;
+  const time=document.getElementById('fTime').value;
+  const addr=document.getElementById('fAddr').value.trim();
+  const notes=document.getElementById('fNotes').value.trim();
+  const msg=encodeURIComponent(
+    `🏥 *Apex Health Booking Request*\n\n`+
+    `👤 Name: ${name}\n📱 Phone: ${phone}\n`+
+    `🔬 Service: ${service?service.value:'N/A'}\n`+
+    (date?`📅 Date: ${date} · ${time}\n`:'')+
+    (addr?`📍 Address: ${addr}\n`:'')+
+    (notes?`📝 Notes: ${notes}\n`:'')+
+    `\nPlease confirm my booking. Thank you! 🙏`
+  );
+  window.open('https://wa.me/919518656024?text='+msg,'_blank');
+  document.getElementById('bookingSuccess').style.display='flex';
+}
+function sendContactWhatsApp() {
+  window.open('https://wa.me/919518656024?text=Namaste! I have a query about Apex Health services.','_blank');
+}
+function resetBorder(el) {
+  if(!el.querySelector('input').checked) el.style.borderColor='var(--border)';
+}
+(function(){
+  const d=document.getElementById('fDate');
+  if(d){const t=new Date();d.min=`${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`;}
+})();
+</script>
+</body>
+</html>
