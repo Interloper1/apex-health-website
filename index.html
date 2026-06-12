@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root {
   /* Brand */
@@ -3209,25 +3210,49 @@ function nextStep(step) {
   });
   currentStep=step;
 }
-function submitBooking() {
-  const name=document.getElementById('fName').value.trim();
-  const phone=document.getElementById('fPhone').value.trim();
-  const service=document.querySelector('input[name="service"]:checked');
-  const date=document.getElementById('fDate').value;
-  const time=document.getElementById('fTime').value;
-  const addr=document.getElementById('fAddr').value.trim();
-  const notes=document.getElementById('fNotes').value.trim();
-  const msg=encodeURIComponent(
+// ── Supabase setup ──────────────────────────────────────────────
+const _supa = supabase.createClient(
+  'https://xnfcfydibjmihklkmkcy.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhuZmNmeWRpYmptaWhrbGtta2N5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyNTc1MDcsImV4cCI6MjA5NjgzMzUwN30.R0xoIOmUiIYZr1OnHUsNqnYPOZL2OLwtgjrCo9AzaFo'
+);
+
+async function submitBooking() {
+  const name    = document.getElementById('fName').value.trim();
+  const phone   = document.getElementById('fPhone').value.trim();
+  const service = document.querySelector('input[name="service"]:checked');
+  const date    = document.getElementById('fDate').value;
+  const time    = document.getElementById('fTime').value;
+  const addr    = document.getElementById('fAddr').value.trim();
+  const notes   = document.getElementById('fNotes').value.trim();
+
+  // 1️⃣ Save to Supabase (fire-and-forget — WhatsApp still opens even if this fails)
+  try {
+    const { error } = await _supa.from('Appointments').insert([{
+      patient_name:   name,
+      phone:          phone,
+      service:        service ? service.value : 'N/A',
+      preferred_date: date ? (date + (time ? ' · ' + time : '')) : null,
+      location:       addr || null,
+      notes:          notes || null,
+      status:         'new'
+    }]);
+    if (error) console.warn('Supabase insert error:', error.message);
+  } catch(e) {
+    console.warn('Supabase unreachable:', e.message);
+  }
+
+  // 2️⃣ Open WhatsApp as before (unchanged)
+  const msg = encodeURIComponent(
     `🏥 *Apex Health Booking Request*\n\n`+
     `👤 Name: ${name}\n📱 Phone: ${phone}\n`+
-    `🔬 Service: ${service?service.value:'N/A'}\n`+
-    (date?`📅 Date: ${date} · ${time}\n`:'')+
-    (addr?`📍 Address: ${addr}\n`:'')+
-    (notes?`📝 Notes: ${notes}\n`:'')+
+    `🔬 Service: ${service ? service.value : 'N/A'}\n`+
+    (date ? `📅 Date: ${date} · ${time}\n` : '')+
+    (addr ? `📍 Address: ${addr}\n` : '')+
+    (notes ? `📝 Notes: ${notes}\n` : '')+
     `\nPlease confirm my booking. Thank you! 🙏`
   );
-  window.open('https://wa.me/919518656024?text='+msg,'_blank');
-  document.getElementById('bookingSuccess').style.display='flex';
+  window.open('https://wa.me/919518656024?text='+msg, '_blank');
+  document.getElementById('bookingSuccess').style.display = 'flex';
 }
 function sendContactWhatsApp() {
   window.open('https://wa.me/919518656024?text=Namaste! I have a query about Apex Health services.','_blank');
